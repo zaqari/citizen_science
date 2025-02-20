@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+a:link {
+  color: rgb(201, 178, 5);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(70, 5, 201);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("https://www.intotheminds.com/blog/app/uploads/desk-research-group-tn.jpg");
+  min-height: 20%;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- <div class="bgimg-1" style="min-height: 60%;">
+  <div class="caption">
+  <span class="border">Publications</span>
+  </div>
+</div> -->
+
+<div style="position:relative;">
+  <div style="color:#282E34;background-color:white;text-align:left;padding:50px 80px;">
+    <h3 style="text-align:left;color:rgb(164, 162, 6);">Convergence Entropy</h3>
+    <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+    <p>We used the convergence-entropy metric (also known as the Entropy conVergence Metric or EVM) to calculate how similar the ideas expressed in one text, written by either one of our classmates or chatGPT, were to one another. EVM converts every word in a text into a word vector using a differnt LLM than chatGPT (we specifically used one called RoBERTa). The word vectors that are generated are actually really good at representing the semantic meaning of a word (Mikolov et al. 2013; Devlin et al. 2018; Utsumi 2020). Once we have those word vectors we calculate how likely two words mean the same thing by seeing how similar those two word vectors are to one another using something called their cosine error. If cosine error is close to zero then two word vectors are really similar to one another, and the words they represent probably mean the same thing.</p>
+    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. $E_{xi}$ is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
+    <p>$$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$$</p>
+    <p>Once you have that value, you can calculate how much entropy -- how much random information -- the text $y$ adds to the text $x$ in order to get from the ideas expressed in the text $x$ to the ideas in the text $y$. via the equation below.</p>
+    <p>$$H(x;y) = - \sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y)$$</p>
+  </div>
+</div>
+
+<div style="color:white;background-color:#282E34;text-align:left;padding:50px 80px;">
+  <h3 style="text-align: left;color:rgb(164, 162, 6);">Collecting the data</h3>
+    <p>To collect our LLM data, we generated responses from GPT-4 using 5 different prompts, and had it rewrite its response to each prompt five different times. GPT-4 never saw what it wrote in response to a prior prompt, so each time was a little different.</p>
+    <p>To collect human data, students responded to the same question we posed to GPT-4. Those responses were collected on canvas and then used as inputs to the EVM data listed above.</p>
+    <p>We made a document containing pairwise comparisons for each student to another student as well as for each student to each LLM generated response. We did the same for the LLM responses, comparing each LLM response to every other LLM response, as well as comparing each LLM response to every student response. This document was what we used to calculate EVM values.</p>
+    <p>We created a second document as well comparing each response to the prompt to the prompt itself for both students and the llm generated texts. This document was what we used to calculate EVM values in a second round of calculations.</p>
+</div>
+
+<div style="position:relative;">
+  <div style="color:#282E34;background-color:white;text-align:left;padding:50px 80px;">
+    <h3 style="text-align:left;color:rgb(164, 162, 6);">Testing for differences</h3>
+    <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+    <p>We tested the way EVM values differed across each comparison using a custom regression model written in JAGS. The equation for our regression model is below.</p>
+    <p>$$H(x;y) \sim \beta_{c} \delta_{c \in \{ \textit{llm compared to llm, human compared to human} \}} + \beta_{n_x} n_x + \beta_{n_y} n_y + \beta_{w}$$</p>
+    <p>Where $H(x;y)$ is the entropy we observed, $c$ is the condition we looked at -- either a person compared to another person (in which case this value is 1), a person compared to llm response (in which case this value is 0), or an llm compared to an llm (in which case this value was 1). $n_x$ is how many words are in the text $x$, and $n_y$ is how many words are in the text $y$, and $w$ just means the person who wrote the text.</p>
+    <p>Our main hypothesis is that $\beta_c$ is not only not equal to zero, but that when it's true that we are comparing an LLM text to another LLM text, that this value is actually negative. Conversly, we assumed that $\beta_c$ is positive when comparing a human to another human.</p>
+
+  </div>
+</div>
+
+
+<!-- <div class="bgimg-1" style="min-height: 30%;"></div> -->
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+a:link {
+  color: rgb(201, 178, 5);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(70, 5, 201);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("https://www.intotheminds.com/blog/app/uploads/desk-research-group-tn.jpg");
+  min-height: 20%;
+}
+
+.bgimg-2 {
+  background-image: url("https://edezach.files.wordpress.com/2020/11/bigmug.jpg");
+  min-height: 100%;
+}
+
+.bgimg-3 {
+  background-image: url("./images/brain.jpg");
+  min-height: 80%;
+}
+
+.bgimg-4 {
+  background-image: url("https://edezach.files.wordpress.com/2020/11/dnn18.png");
+  min-height: 15%;
+}
+
+.grey-block{
+  color: white;
+  background-color: #777;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.grey-H3{
+  color: white;
+  text-align: center;
+}
+
+.contact{
+  background-color: #1605a6;
+  color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-block{
+  color: #777;
+  background-color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-H3{
+  color: #777;
+  text-align: center;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="bgimg-3" style="min-height: 35%;">
+  <div class="caption" id="title">
+    <span class="border">RESULTS</span>
+  </div>
+</div>
+
+<div id="LLMs" class="white-block">
+  <h3 class="white-H3">How much more or less information do LLMs contribute when compared to one another? Compared to humans?</h3>
+  <p>The interactive graph below shows just how much more or less information both LLMs and humans bring into the texts they produce as outputs when compared to another speaker in the same condition (i.e. comparing two humans to one another and comparing two LLM outputs to one another). The lower this number is, the more predictable two texts are when compared to one another. And so if you're looking for interesting/exciting writing where either people or LLMs write in ways that are different from one another, you hope that the values reported here are higher.</p>
+  <div>
+    <embed src="./within-condition-similarly-results.html" style="width: 100%; height: 800px; display: block" frameBorder="0"/>
+  </div>
+  
+</div>
+
+<div id="roboticness" class="grey-block">
+  <h3 class="grey-H3">How close are most of us to sounding robotic?</h3>
+  <p>The point is to be on the right-hand side of the line here . . . so how many of us ended up on that side??</p>
+  <div>
+    <embed src="./are-we-robots-results.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>
+  </div>
+</div>
+
+<div id="excitingdirections" class="white-block">
+  <h3 class="white-H3">Do LLMs or people take the prompt in more directions?</h3>
+  <p>The prompt is a starting point for the writing students engaged in. And exciting writing will take the prompt in a direction that was less predictable. And so, the question is whether humans or LLMs will have higher entropy (the values reported on here) in recovering the exact ideas expressed in the prompt. Higher entropy means that the writer went off in a more exciting direction.</p>
+  <div>
+    <embed src="./exciting-writing.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>
+  </div>
+</div>
+
+<div class="bgimg-3" style="min-height: 35%;"></div>
+
+</body>
+</html>
