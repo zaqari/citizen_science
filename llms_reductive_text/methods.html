@@ -2,14 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script type="text/javascript"
+  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
-<script type="text/javascript"
-  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<style>
+
+  <style>
 body, html {
   height: 100%;
   margin: 0;
@@ -88,7 +90,7 @@ h3 {
     <h3 style="text-align:left;color:rgb(164, 162, 6);">Convergence Entropy</h3>
     <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
     <p>We used the convergence-entropy metric (also known as the Entropy conVergence Metric or EVM) to calculate how similar the ideas expressed in one text, written by either one of our classmates or chatGPT, were to one another. EVM converts every word in a text into a word vector using a differnt LLM than chatGPT (we specifically used one called RoBERTa). The word vectors that are generated are actually really good at representing the semantic meaning of a word (Mikolov et al. 2013; Devlin et al. 2018; Utsumi 2020). Once we have those word vectors we calculate how likely two words mean the same thing by seeing how similar those two word vectors are to one another using something called their cosine error. If cosine error is close to zero then two word vectors are really similar to one another, and the words they represent probably mean the same thing.</p>
-    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. $E_{xi}$ is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
+    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. \(E_{xi}\) is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
     <!-- <p>$$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$$</p> -->
     <p><embed src="./images/probability.png" style="width: 100%; height: 100%; display: block" frameBorder="0"/></p>
     <p>Once you have that value, you can calculate how much entropy -- how much random information -- the text $y$ adds to the text $x$ in order to get from the ideas expressed in the text $x$ to the ideas in the text $y$. via the equation below.</p>
