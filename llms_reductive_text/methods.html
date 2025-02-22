@@ -123,7 +123,8 @@ h3 {
 
 <div style="color:white;background-color:#282E34;text-align:left;padding:50px 80px;">
   <h3 style="text-align: left;color:rgb(164, 162, 6);">Who writes more exciting responses?</h3>
-  <p>We wanted to know who writes more exciting text? Who writes things that take us farther away from what's said in the prompt in cool or interesting ways? To do that, we calculated EVM values for the prompt that both students and LLMs responded to, for every human and every LLM response we got.</p>
+  <p>We wanted to know: "who writes more exciting text? Who writes things that take us farther away from what's said in the prompt in cool or interesting ways?"</p> 
+  <p>To answer that, we calculated EVM values for the prompt that both students and LLMs responded to, for every human and every LLM response we got.</p>
   <p>We tested the way EVM values differed across each comparison using a custom regression model written in JAGS. The equation for our regression model is below.</p>
   <p>$H(x;y) \sim P_{N} \left(  \phi_{xy}, \epsilon_{p} \right)$</p>
   <p>$\phi_{xy} = \beta_{llm} \delta_{llm} + \beta_{n_x} n_x + \beta_{n_y} n_y$</p>
