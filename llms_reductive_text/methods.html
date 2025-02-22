@@ -2,15 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<!-- <script type="text/javascript"
-  src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-</script> -->
-
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
@@ -21,7 +13,6 @@
     }
   };
 </script>
-
 <style>
 body, html {
   height: 100%;
@@ -101,11 +92,10 @@ h3 {
     <h3 style="text-align:left;color:rgb(164, 162, 6);">Convergence Entropy</h3>
     <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
     <p>We used the convergence-entropy metric (also known as the Entropy conVergence Metric or EVM) to calculate how similar the ideas expressed in one text, written by either one of our classmates or chatGPT, were to one another. EVM converts every word in a text into a word vector using a differnt LLM than chatGPT (we specifically used one called RoBERTa). The word vectors that are generated are actually really good at representing the semantic meaning of a word (Mikolov et al. 2013; Devlin et al. 2018; Utsumi 2020). Once we have those word vectors we calculate how likely two words mean the same thing by seeing how similar those two word vectors are to one another using something called their cosine error. If cosine error is close to zero then two word vectors are really similar to one another, and the words they represent probably mean the same thing.</p>
-    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. \(E_{xi}\) is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
-    <!-- <p>$$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$$</p> -->
-    <p><embed src="./images/probability.png" style="width: 100%; height: 100%; display: block" frameBorder="0"/></p>
+    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. $E_{xi}$ is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
+    <p>$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$</p>
     <p>Once you have that value, you can calculate how much entropy -- how much random information -- the text $y$ adds to the text $x$ in order to get from the ideas expressed in the text $x$ to the ideas in the text $y$. via the equation below.</p>
-    <p><embed src="./images/entropy.png" style="width: 100%; height: 100%; display: block" frameBorder="0"/></p>
+    <p>$H(x;y) = - \sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y)$</p>
   </div>
 </div>
 
@@ -122,10 +112,10 @@ h3 {
     <h3 style="text-align:left;color:rgb(164, 162, 6);">Testing for differences</h3>
     <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
     <p>We tested the way EVM values differed across each comparison using a custom regression model written in JAGS. The equation for our regression model is below.</p>
-    <p><embed src="./images/regression-exp1.png" style="width: 500px; height: 100%; display: block" frameBorder="0"/></p>
+    <p>$H(x;y) \sim  P_{N} \left( \theta_{xy}, \epsilon_{p} \right) $</p>
+    <p>$\theta_{xy} = \beta_{c} \delta_{c} + \beta_{n_x} n_x + \beta_{n_y} n_y $</p>
     <p>Where $H(x;y)$ is the entropy we observed, $c$ is the condition we looked at -- either a person compared to another person (in which case this value is 1), a person compared to llm response (in which case this value is 0), or an llm compared to an llm (in which case this value was 1). $n_x$ is how many words are in the text $x$, and $n_y$ is how many words are in the text $y$, and $p$ just means the person who wrote the text. $\epsilon_p$ is how much variance or extra noise is left over for every person or llm in the data. $\delta_c$ is a "switch" that multiples $\beta_c$ times 1 if one of the conditions in the list below are true.</p>
-    <p><embed src="./images/delta-exp1.png" style="width: 500px; height: 100%; display: block" frameBorder="0"/></p>
-    <p>Any value indicated via $\beta$ or $\epsilon$ were sampled from a uniform prior on range [-1000, 1000].</p>
+    <p>$\delta_c = \begin{cases} 1 & \text{if } c \in \text{ [ x & y are llms, x & y are students] } \\ 0 & elsewhere \end{cases}$</p>
     <p>Our main hypothesis is that $\beta_c$ is not only not equal to zero, but that when it's true that we are comparing an LLM text to another LLM text, that this value is actually negative. Conversly, we assumed that $\beta_c$ is positive when comparing a human to another human.</p>
 
   </div>
@@ -135,10 +125,10 @@ h3 {
   <h3 style="text-align: left;color:rgb(164, 162, 6);">Who writes more exciting responses?</h3>
   <p>We wanted to know who writes more exciting text? Who writes things that take us farther away from what's said in the prompt in cool or interesting ways? To do that, we calculated EVM values for the prompt that both students and LLMs responded to, for every human and every LLM response we got.</p>
   <p>We tested the way EVM values differed across each comparison using a custom regression model written in JAGS. The equation for our regression model is below.</p>
-  <p><embed src="./images/regression-exp2.png" style="width: 500px; height: 100%; display: block" frameBorder="0"/></p>
+  <p>$H(x;y) \sim P_{N} \left(  \phi_{xy}, \epsilon_{p} \right)$</p>
+  <p>$\phi_{xy} = \beta_{llm} \delta_{llm} + \beta_{n_x} n_x + \beta_{n_y} n_y$</p>
   <p>Just like last time, $n_x$ is how many words are in the text $x$, $n_y$ is how many words are in the text $y$, and $p$ just means the person who wrote the text. $\delta_{llm}$ is a "switch" that multiples $\beta_{llm}$ times 1 if the writer was an LLM (i.e. $u = llm$).</p>
-  <p><embed src="./images/delta-exp2.png" style="width: 500px; height: 100%; display: block" frameBorder="0"/></p>
-  <p>Just like last time, any value indicated via $\beta$ or $\epsilon$ were sampled from a uniform prior on range [-1000, 1000].</p>
+  <p>$\delta_{llm} = \begin{cases} 1 & \text{if } u = llm \\ 0 & elsewhere \end{cases}$</p>
   <p>We then used this to calculate a residual value for each student and each bot response., where we looked at, for each student in our dataset, how wrong the prediction for how much convergence-entropy there should be if we only considered how long the prompt was and how long the response was. If this residual value is close to 0 or negative, that means that you can recover a lot of information about what was in the prompt, but that the person or bot responding to the prompt didn't add in a lot of novel information that would otherwise be exciting or interesting to read.</p>
   <p>To say we had a hypothesis isn't quite right in this case. This was an exploratory analysis. But we hoped that students would in general have higher EVM values indicating that they responded in ways that were generally more exciting.</p>
 
