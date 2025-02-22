@@ -3,6 +3,16 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$']]
+    }
+  };
+</script>
 <style>
 body, html {
   height: 100%;
@@ -137,6 +147,13 @@ h3 {
   <div>
     <embed src="./are-we-robots-results.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>
   </div>
+  <p>All the values reported here are based on the residual (how off the predicted value of convergence-entropy is compared to the actual value) if we treated every student as an LLM. In other words . . .</p>
+  <p>$H(x_{llm};y_{student}) \sim P_{N} \left( \theta_{xy}, \epsilon_p \right)$</p>
+  <p>Where</p>
+  <p>$\theta_{xy} = \beta_{c} \cdot 1 + \beta_{n_x} n_x + \beta_{n_y} n_y $</p>
+  <p>And the residual is calculated via</p>
+  <p>$H(x_{llm};y_{student}) - \hat{H}(x_{llm};y_{student})$</p>
+  <p>Here $\hat{H}$ just means we're using the predicted entropy based off of the equations we listed above.</p>
 </div>
 
 <div id="excitingdirections" class="white-block">
@@ -145,6 +162,12 @@ h3 {
   <div>
     <embed src="./exciting-writing.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>
   </div>
+  <p>All the values reported here are based on the residual (how off the predicted value of convergence-entropy is compared to the actual value). Using the math from the methods section, that looks like: </p>
+  <p>$H(x_{prompt};y) \sim P_{N} \left(  \phi_{xy}, \epsilon_{p} \right)$</p>
+  <p>$\phi_{xy} = \beta_{llm} \delta_{llm} + \beta_{n_x} n_x + \beta_{n_y} n_y$</p>
+  <p>And the residual is calculated via</p>
+  <p>$H(x_{prompt};y) - \hat{H}(x_{prompt};y)$</p>
+  <p>Here $\hat{H}$ just means we're using the predicted entropy based off of the equations we listed above.</p>
 </div>
 
 </body>
