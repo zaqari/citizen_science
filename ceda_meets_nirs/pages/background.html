@@ -6,6 +6,7 @@
 <meta http-equiv='cache-control' content='no-cache'> 
 <meta http-equiv='expires' content='0'> 
 <meta http-equiv='pragma' content='no-cache'>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -17,23 +18,13 @@
     }
   };
 </script>
+
 <style>
 body, html {
   height: 100%;
   margin: 0;
   font: 400 15px/1.8 "Lato", sans-serif;
   color: #777;
-}
-
-.button {
-  background-color: none; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
 }
 
 a:link {
@@ -48,9 +39,8 @@ a:visited {
   text-decoration: none;
 }
 
-.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5 {
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
   position: relative;
-  opacity: 0.65;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,29 +48,59 @@ a:visited {
 
 }
 .bgimg-1 {
-  /* background-image: url("./images/brain.jpg"); */
-  background-image: url("https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200714222122/Top-8-Free-Dataset-Sources-to-Use-for-Data-Science-Projects.png");
-  min-height: 100%;
+  background-image: url("https://www.intotheminds.com/blog/app/uploads/desk-research-group-tn.jpg");
+  min-height: 20%;
 }
 
 .bgimg-2 {
-  background-image: url("./images/compMod.jpg");
-  min-height: 400px;
+  background-image: url("https://edezach.files.wordpress.com/2020/11/bigmug.jpg");
+  min-height: 100%;
 }
 
 .bgimg-3 {
-  background-image: url("https://edezach.files.wordpress.com/2020/11/bigmug.jpg");
-  min-height: 400px;
+  background-image: url("./images/brain.jpg");
+  min-height: 80%;
 }
 
 .bgimg-4 {
   background-image: url("https://edezach.files.wordpress.com/2020/11/dnn18.png");
-  min-height: 50%;
+  min-height: 15%;
 }
 
-.bgimg-5 {
-  background-image: url("./images/brain.jpg");
-  min-height: 100%;
+.grey-block{
+  color: white;
+  background-color: #777;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.grey-H3{
+  color: white;
+  text-align: left;
+}
+
+.contact{
+  background-color: #1605a6;
+  color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-block{
+  color: #777;
+  background-color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-H3{
+  color: #777;
+  text-align: right;
+}
+
+.white-H5{
+  color: #777;
+  text-align: left;
 }
 
 .caption {
@@ -107,193 +127,11 @@ h3 {
   color: #111;
 }
 
-.content {
-  padding: 0px;
-}
-
-.sticky {
-  position: fixed;
-  overflow: visible;
-  top: 0;
-  width: 100%;
-}
-
-.sticky + .content {
-  padding-top: 102px;
-}
-
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-  .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5 {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
     background-attachment: scroll;
   }
-}
-
-/* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  /* overflow: hidden; */
-  z-index: 100;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  z-index: 101;
-}
-
-/* Add an active class to highlight the current page */
-.active {
-  background-color: #04AA6D;
-  color: white;
-  z-index: 102;
-}
-
-/* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-  display: none;
-}
-
-/* Dropdown container - needed to position the dropdown content */
-.dropdown {
-  float: left;
-  overflow: hidden;
-  z-index: 300;
-}
-
-/* Style the dropdown button to fit inside the topnav */
-.dropdown .dropbtn {
-  font-size: 17px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 20px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-  z-index: 100;
-}
-
-/* Style the dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 111;
-}
-
-/* Style the links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  z-index: 110;
-}
-
-/* Add a dark background on topnav links and the dropdown button on hover */
-.topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #555;
-  color: white;
-  z-index: 111;
-}
-
-/* Add a grey background to dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
-  color: black;
-  z-index: 111;
-  display: block;
-}
-
-/* Show the dropdown menu when the user moves the mouse over the dropdown button */
-.dropdown:hover .dropdown-content {
-  display: block;
-  z-index: 111;
-}
-
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child), .dropdown .dropbtn {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .topnav.responsive .dropdown {float: none;}
-  .topnav.responsive .dropdown-content {position: relative;}
-  .topnav.responsive .dropdown .dropbtn {
-    display: block;
-    width: 100%;
-    text-align: left;
-    position: relative;
-    z-index: 300;
-  }
-}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 </style>
@@ -307,106 +145,53 @@ h3 {
   <p></p>
 </div>
 
-<div style="position:relative;">
-  <div style="color:white;background-color:#1b232c;text-align:left;padding:50px 80px;">
-    <h3 style="text-align:left;color:lightslategrey;">Merging Convergence-Entropy ratings with deaggregated fNIRS measurements</h3>
-    <p>The final analysis attempts to predict convergence-entropy measurements based on fNIRS measurements at the channel level. To do so, we needed to accomplish the following: (1) calculate the convergence-entropy for an utterance made by one of the speakers in the dyad compared to the utterance made by the next speaker in that dyad, and (2) calculate the difference in each fNIRS channel measurement between the time that the speaker of the current utterance began speaking and when they ended.</p>
-    <p>The following video walks through that process visually. Otherwise, step-by-step descriptions are provided below.</p>
-    <iframe src="https://www.youtube.com/embed/1YZCyrav5sk?si=4eZRaRL4jWXvtDtc" style="width: 100%; height: 500px;" frameborder="0"></iframe>
-    <p>Quick vocab check: let $x_1$ be the first utterance spoken by the speaker x, and $y_1$ be the first utterance spoken by the speaker y, and which occurs after $x_1$. Just keep in mind that the speaker y talks after the speaker x in these examples, and let the subscript just be that speaker $k^{th}$ turn. We also know, thanks to the amazing annotators who worked on this project, that the utterance $x_1$ started at some time $t=0$, and the uttearance $y_1$, which was spoken into existence after $x_1$ started at some time after $x_1$, i.e. $t > t(x_1)$. Keep these starting points in mind as we go on!</p>
-    <h4 style="text-align:left;color:rgb(154, 164, 184);">Calculating Convergence-Entropy</h4>
-    <p>The utterances $x_1$ and $y_1$--and every utterance afterwards in the conversation--are comprised of a set of words, or what we'll call tokens. That set can contain one token, but it can contain up to an infinite number of tokens, too, up until basically the heat death of the universe. The first step is to create word vectors (using the transformer language model, RoBERTa in this case) for every token $i$ in $x_1$, and every token $j$ in $y_1$. This yields a set of word vectors for every token in $x_1$, $E_{xi}$, and a set of word vectors for every token in $y_1$, $E_{yj}$.</p>
-    <p>Once we have these word vectors in hand, for every single word vector in $E_{xi}$ we find the one word vector in $E_{yj}$ that has the lowest Cosine Error (CoE) with that word vector: $\min_j (E_{xi}, E_{yj})$.</p>
-    <p>We now have a minimum CoE value for each word vector in $x_1$. But that tells us fairly little CoE is a measurement of distance, not probability, and definitely not information. So we need to convert that distance to a probability--something that quantifies the probability that we see two word vectors that are that close to eachother and would mistake them for meaning the same thing--and then from that probability we can calculate the entropy for each token, and then sum that. </p>
-    <p>In Rosen & Dale 2023, we used a half-Gaussian distribution with a location $\mu=0$ and scale $\sigma[=1.5]$ to do that. The half-Gaussian effectively gives the most probability to CoE values that are close to zero, which is the same as saying that when CoE is close to 0 we'd likely mistake the word vectors to be for the exact same word, and thus the words, by the logic of word vectors, would have nigh identical meanings.</p>
-    <p>$$P(E_{xi}|E_y) = P_{N_{[0,\infty]}} (\min_j (E_{xi}, E_{yj}) | \mu=0, \sigma=1.5) $$</p>
-    <p>Probability in hand, we can calculate the total entropy for the utterance $x_1$ based on the content of what's in $y_1$ using Claude Shannon's classic formula for entropy.</p>
-    <p>$$ H[x_1|y_1] = -\sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y) $$</p>
-    <br>
-    <h4 style="text-align:left;color:rgb(154, 164, 184);">Merging Convergence-Entropy with de-aggregated fNIRS data</h4>
-    <p>Alright. Recall that we know that the utterance $x_1$ starts at time $t[=0]$, and that the utterance $y_1$ starts at time $t > t(x_1)$. We can use that knowledge to identify the total number of samples in the fNIRS data for both the speaker x and the speaker y that were taken within that time range. We know that the sample resolution for fNIRS is  5.0863Hz. That means each sample in our measurements (think of them as being organized in a csv, where every row is a sample) occurs 1/5.0863 apart from eachother.</p>
-    <p>Knowing that the $x_1$ starts at time $t$ we can use the sampling rate dscribed above to identify all the samples that were taken between time $t(x_1)$ and time $t(y_1)$ for both speakers in the dyad. We did exactly that for every utterance and timestamp in the annotated transcripts that we had available to us.</p>
-    <p>Our hypotheses concerned <em>differences</em> between the fNIRS measurements. So we took the fNIRS measurements between $t(x_1)$ and $t(y_1)$ for both the speaker x and the speaker y. For every channel and every sample, we subtracted the measured fNIRS value for the speaker y from the fNIRS channel value for the speaker x. If you think of the fNIRS samples for the speaker x between times $t(x_1)$ and $t(y_1)$ as a matrix of shape "fNIRS Channels" $\times$ "rows between $t(x_1)$ and $t(y_1)$" (let's say $c \times t$ for short), then this is the subtraction of a $c \times t$ from a $c \times t$ matrix. We saved the absolute value of this process.</p>
-    <p>Finally, we took this set of difference values and averaged it across all rows. This yielded a final matrix of shape $c \times 1$.</p>
-    <p>We use this last vector as an input to a Linear Mixed Effects model, where we used that averaged distance matrix to predict convergence-entropy measurements calculated for the utterance $x_1$ based on $y_1$. So, if there are $c$ channels, this can be thought of as a regression model wherein $H[x_1|y_1] \sim \sum_c \beta_c c$ plus a small number of fixed effects.</p>
-    <p>Our final model is a nested fixed effects intercept model, with the following syntax:</p>
-    <p>$H[x|y] \sim (C(mixed_gender)/(c_1 + ... c_{40})) + transition + nx + ny + (1|dyad)$</p>
-    <p>Where whether the parameters for each channel are estimated separately for heterogeneous versus homogeneous gender dyads, and we estimate some baseline random (like the effect of the number of tokens in the utterance $x_1$, $n_x$, and in the utterance $y_1$, $n_y$) and fixed effects (for dyad) for the entire model.</p>
-  </div>
+<div style="color:white;background-color:#1b232c;text-align:left;padding:50px 80px;">
+  <h3 style="text-align:left;color:lightslategrey;">Merging Convergence-Entropy ratings with deaggregated fNIRS measurements</h3>
+  <p>The final analysis attempts to predict convergence-entropy measurements based on fNIRS measurements at the channel level. To do so, we needed to accomplish the following: (1) calculate the convergence-entropy for an utterance made by one of the speakers in the dyad compared to the utterance made by the next speaker in that dyad, and (2) calculate the difference in each fNIRS channel measurement between the time that the speaker of the current utterance began speaking and when they ended.</p>
+  <p>The following video walks through that process visually. Otherwise, step-by-step descriptions are provided below.</p>
+  <iframe src="https://www.youtube.com/embed/1YZCyrav5sk?si=4eZRaRL4jWXvtDtc" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+  <p>Quick vocab check: let $x_1$ be the first utterance spoken by the speaker x, and $y_1$ be the first utterance spoken by the speaker y, and which occurs after $x_1$. Just keep in mind that the speaker y talks after the speaker x in these examples, and let the subscript just be that speaker $k^{th}$ turn. We also know, thanks to the amazing annotators who worked on this project, that the utterance $x_1$ started at some time $t=0$, and the uttearance $y_1$, which was spoken into existence after $x_1$ started at some time after $x_1$, i.e. $t > t(x_1)$. Keep these starting points in mind as we go on!</p>
+  <h4 style="text-align:left;color:rgb(154, 164, 184);">Calculating Convergence-Entropy</h4>
+  <p>The utterances $x_1$ and $y_1$--and every utterance afterwards in the conversation--are comprised of a set of words, or what we'll call tokens. That set can contain one token, but it can contain up to an infinite number of tokens, too, up until basically the heat death of the universe. The first step is to create word vectors (using the transformer language model, RoBERTa in this case) for every token $i$ in $x_1$, and every token $j$ in $y_1$. This yields a set of word vectors for every token in $x_1$, $E_{xi}$, and a set of word vectors for every token in $y_1$, $E_{yj}$.</p>
+  <p>Once we have these word vectors in hand, for every single word vector in $E_{xi}$ we find the one word vector in $E_{yj}$ that has the lowest Cosine Error (CoE) with that word vector: $\min_j (E_{xi}, E_{yj})$.</p>
+  <p>We now have a minimum CoE value for each word vector in $x_1$. But that tells us fairly little CoE is a measurement of distance, not probability, and definitely not information. So we need to convert that distance to a probability--something that quantifies the probability that we see two word vectors that are that close to eachother and would mistake them for meaning the same thing--and then from that probability we can calculate the entropy for each token, and then sum that. </p>
+  <p>In Rosen & Dale 2023, we used a half-Gaussian distribution with a location $\mu=0$ and scale $\sigma[=1.5]$ to do that. The half-Gaussian effectively gives the most probability to CoE values that are close to zero, which is the same as saying that when CoE is close to 0 we'd likely mistake the word vectors to be for the exact same word, and thus the words, by the logic of word vectors, would have nigh identical meanings.</p>
+  <p>$$P(E_{xi}|E_y) = P_{N_{[0,\infty]}} (\min_j (E_{xi}, E_{yj}) | \mu=0, \sigma=1.5) $$</p>
+  <p>Probability in hand, we can calculate the total entropy for the utterance $x_1$ based on the content of what's in $y_1$ using Claude Shannon's classic formula for entropy.</p>
+  <p>$$ H[x_1|y_1] = -\sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y) $$</p>
+  <br>
+  <h4 style="text-align:left;color:rgb(154, 164, 184);">Merging Convergence-Entropy with de-aggregated fNIRS data</h4>
+  <p>Alright. Recall that we know that the utterance $x_1$ starts at time $t[=0]$, and that the utterance $y_1$ starts at time $t > t(x_1)$. We can use that knowledge to identify the total number of samples in the fNIRS data for both the speaker x and the speaker y that were taken within that time range. We know that the sample resolution for fNIRS is  5.0863Hz. That means each sample in our measurements (think of them as being organized in a csv, where every row is a sample) occurs 1/5.0863 apart from eachother.</p>
+  <p>Knowing that the $x_1$ starts at time $t$ we can use the sampling rate dscribed above to identify all the samples that were taken between time $t(x_1)$ and time $t(y_1)$ for both speakers in the dyad. We did exactly that for every utterance and timestamp in the annotated transcripts that we had available to us.</p>
+  <p>Our hypotheses concerned <em>differences</em> between the fNIRS measurements. So we took the fNIRS measurements between $t(x_1)$ and $t(y_1)$ for both the speaker x and the speaker y. For every channel and every sample, we subtracted the measured fNIRS value for the speaker y from the fNIRS channel value for the speaker x. If you think of the fNIRS samples for the speaker x between times $t(x_1)$ and $t(y_1)$ as a matrix of shape "fNIRS Channels" $\times$ "rows between $t(x_1)$ and $t(y_1)$" (let's say $c \times t$ for short), then this is the subtraction of a $c \times t$ from a $c \times t$ matrix. We saved the absolute value of this process.</p>
+  <p>Finally, we took this set of difference values and averaged it across all rows. This yielded a final matrix of shape $c \times 1$.</p>
+  <p>We use this last vector as an input to a Linear Mixed Effects model, where we used that averaged distance matrix to predict convergence-entropy measurements calculated for the utterance $x_1$ based on $y_1$. So, if there are $c$ channels, this can be thought of as a regression model wherein $H[x_1|y_1] \sim \sum_c \beta_c c$ plus a small number of fixed effects.</p>
+  <p>Our final model is a nested fixed effects intercept model, with the following syntax:</p>
+  <p>$H[x|y] \sim (C(mixed_gender)/(c_1 + ... c_{40})) + transition + nx + ny + (1|dyad)$</p>
+  <p>Where whether the parameters for each channel are estimated separately for heterogeneous versus homogeneous gender dyads, and we estimate some baseline random (like the effect of the number of tokens in the utterance $x_1$, $n_x$, and in the utterance $y_1$, $n_y$) and fixed effects (for dyad) for the entire model.</p>
 </div>
 
-<div style="position:relative;">
-  <div style="color:rgb(0, 0, 0);background-color:#bedcfa;text-align:left;padding:50px 80px;">
-    <h3 style="text-align:center;color:lightslategrey;font-size: 32px;">FAQs</h3>
-    <p>
-      <em><b>Why focus on a comparison between each token and not use a sentence-embedding model?</b></em>
-      <br>
-      Because word-wise comparisons are  more sensitive and, on the basis of the question of whether people converge at all, are more theoretically motivated. Any utterance made is comprised of myriad words and a set of, typically related, concepts that those words are used to cue us in the direction of (see: <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2009.01023.x" target="_blank">Elman 2009</a> and <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tops.12771" target="_blank">Contreras-Kallens & Christiansen 2023</a>). In any utterance I make, I might converge with part of what you said, and then expand on it with an entirely new idea. If I do that, then the global meaning of the utterance I make might be quite different than the utterance you previously made (which is what sentence-level embeddings are trained to be sensitive to), and yet significant portions of your prior utterance may still be converged to. I might also diverge strongly with part of what you said prior, but converge with you on some parts of your prior utterance. I could just say something random entirely. Heck, parts of this paragraph feel like exactly that. 
-      <br><br>
-      By treating each token as a potential concept--a draw from a Bernoulli distribution wherein we ask "is this word and the concept it codes for based on how it is used in this sentence likely to be pulled from something my discursive partner has said" (see: <a href="https://link.springer.com/article/10.3758/s13428-023-02267-2" target="_blank">Rosen & Dale 2023</a>)--we are extracting fine-grained differences and similarities that would be missed if one uses a sentence-embedding model, which just averages over all the word vectors in an utterance. We do incur a cost, however, in the form greater computational complexity.
-    </p>
+
+
+<div style="color:rgb(0, 0, 0);background-color:#bedcfa;text-align:left;padding:50px 80px;">
+  <h3 style="text-align:center;color:lightslategrey;font-size: 32px;">FAQs</h3>
+  <p>
+    <em><b>Why focus on a comparison between each token and not use a sentence-embedding model?</b></em>
+    <br>
+    Because word-wise comparisons are  more sensitive and, on the basis of the question of whether people converge at all, are more theoretically motivated. Any utterance made is comprised of myriad words and a set of, typically related, concepts that those words are used to cue us in the direction of (see: <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2009.01023.x" target="_blank">Elman 2009</a> and <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tops.12771" target="_blank">Contreras-Kallens & Christiansen 2023</a>). In any utterance I make, I might converge with part of what you said, and then expand on it with an entirely new idea. If I do that, then the global meaning of the utterance I make might be quite different than the utterance you previously made (which is what sentence-level embeddings are trained to be sensitive to), and yet significant portions of your prior utterance may still be converged to. I might also diverge strongly with part of what you said prior, but converge with you on some parts of your prior utterance. I could just say something random entirely. Heck, parts of this paragraph feel like exactly that. 
     <br><br>
-    <p>
-      <em><b>Why use RoBERTa embeddings (or another BERT-based model) rather than GPT-3+ generated embeddings?</b></em>
-      <br>
-      Because GPT-series of models, while architecturally identical to BERT-based models, exhibit high anisotropy due to the training task they are fit on. Every word vector looks very similar to every other word vector they produce (see: <a href="https://aclanthology.org/D19-1006/" target="_blank">Ethayarajh 2019</a>). It is likely for this reason that GPT models are not widely used in downstream tasks, even in industry. Hyperbolically, no one uses the GPT variants of sentence embeddings for the retrieval portion of their RAG architecture, and for a reason.
-      <br><br>
-      Nor is it cost effective or even necessary to use LLM embeddings (which are also still GPT variants). While we could have used modernBERT, it is not as widely available, nor as well documented, as RoBERTa and BERT proper.</p>
-  </div>
+    By treating each token as a potential concept--a draw from a Bernoulli distribution wherein we ask "is this word and the concept it codes for based on how it is used in this sentence likely to be pulled from something my discursive partner has said" (see: <a href="https://link.springer.com/article/10.3758/s13428-023-02267-2" target="_blank">Rosen & Dale 2023</a>)--we are extracting fine-grained differences and similarities that would be missed if one uses a sentence-embedding model, which just averages over all the word vectors in an utterance. We do incur a cost, however, in the form greater computational complexity.
+  </p>
+  <br><br>
+  <p>
+    <em><b>Why use RoBERTa embeddings (or another BERT-based model) rather than GPT-3+ generated embeddings?</b></em>
+    <br>
+    Because GPT-series of models, while architecturally identical to BERT-based models, exhibit high anisotropy due to the training task they are fit on. Every word vector looks very similar to every other word vector they produce (see: <a href="https://aclanthology.org/D19-1006/" target="_blank">Ethayarajh 2019</a>). It is likely for this reason that GPT models are not widely used in downstream tasks, even in industry. Hyperbolically, no one uses the GPT variants of sentence embeddings for the retrieval portion of their RAG architecture, and for a reason.
+    <br><br>
+    Nor is it cost effective or even necessary to use LLM embeddings (which are also still GPT variants). While we could have used modernBERT, it is not as widely available, nor as well documented, as RoBERTa and BERT proper.</p>
 </div>
+
 
 </body>
-
-<script>
-  window.onscroll = function() {myFunction()};
-  
-  var header = document.getElementById("myHeader");
-  var sticky = header.offsetTop;
-  
-  function myFunction() {
-    if (window.pageYOffset > sticky) {
-      header.classList.add("sticky");
-    } else {
-      header.classList.remove("sticky");
-    }
-  }
-</script>
-
-<script>
-    function navmini() {
-        var x = document.getElementById("myHeader");
-        if (x.className === "topnav") {
-        x.className += " responsive";
-        } else {
-        x.className = "topnav";
-        }
-    }
-
-  // Get the modal
-  var modal = document.getElementById("services");
-  
-  // Get the button that opens the modal
-  var svcbtn = document.getElementById("servicesbtn");
-  
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-  
-  // When the user clicks the button, open the modal 
-  svcbtn.onclick = function() {
-    modal.style.display = "block";
-  }
-  
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-  
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-  </script>
 
 </html>

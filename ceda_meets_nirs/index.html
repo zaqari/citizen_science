@@ -75,37 +75,37 @@ a:visited {
   min-width: 100%;
   width: 100%;
   height: auto;
-  background-position: center center;
+  background-position: center right;
 }
 
 .textboximg-1 {
-  /* background-image: url("./images/speech_bubble3.png"); */
+  background-image: url("./images/speech_bubble3.png");
   /* background-image: url("https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200714222122/Top-8-Free-Dataset-Sources-to-Use-for-Data-Science-Projects.png"); */
-  min-height: 85%;
+  min-height: 100%;
   min-width: 100%;
   /* height: 100vh;
   width: 100vw; */
   /* background-size: 90vh 100vw; */
-  /* background-size: 75vw 90vh; */
-  /* background-repeat: no-repeat; */
+  background-size: 75vw 90vh;
+  background-repeat: no-repeat;
   /* background-position: center center; */
 }
 
 .caption {
   position:fixed;
-  /* left: 9%; */
-  top: 95%;
+  left: 9%;
+  top: 9%;
   width: 100%;
-  text-align: right;
+  text-align: center;
   color: #000;
 }
 
 .caption span.border {
   background-color: #111;
   color: #fff;
-  /* padding: 18px; */
-  font-size: 20px;
-  /* letter-spacing: 10px; */
+  padding: 18px;
+  font-size: 13px;
+  letter-spacing: 10px;
 }
 
 h3 {
@@ -272,13 +272,13 @@ h3 {
   z-index: 109; /* Sit on top */
   /*padding-top: 50%;  Location of the box */
   left: 0%;
-  top: 10%;
-  width: 97%; /* Full width */
-  height: 85%; /* Full height */
+  top: 12%;
+  width: 100%; /* Full width */
+  height: 90%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   /* background-color: rgb(0,0,0); Fallback color */
   /* background-color: rgba(0,0,0,0.4); Black w/ opacity */
-  /* background-color: none; */
+  background-color: none;
 }
 
 /* Modal Content */
@@ -289,24 +289,20 @@ h3 {
   padding: 0px;
   border: none;
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
 /* The Close Button */
 .close {
-  /* color: #8d8b8b; */
-  color: #f50202;
+  color: #8d8b8b;
   float: right;
-  left: 94%;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
-  position: absolute;
-  z-index: 500;
 }
 
 .close:hover,
 .close:focus {
-  color: #730101;
+  color: #000;
   text-decoration: none;
   cursor: pointer;
 }
@@ -326,7 +322,7 @@ h3 {
       <a href="javascript:void(0);" class="icon" onclick="navmini()">&#9776;</a>
   </div>
   <div class="caption">
-    <span class="border">Converging Misalignment: Methods</span>
+    <span class="border">Converging Misalignment: Text + fNIRS</span>
   </div>
 
 
@@ -335,14 +331,12 @@ h3 {
 
 
 <!-- MODAL CONTENTS -->
-
 <div id="simplewindow" class="modal">
-  <span class="close" id="simpleclose">&times;</span>
   <div class="modal-content">
+    <span class="close" id="simpleclose">&times;</span>
     <div class="textboximg-1">
-      <iframe id="modalContentFrame" src="" style="width: 100%; height: 100%; position: absolute; left:4.5%; top:5%" frameBorder="0"></iframe>
+      <iframe id="modalContentFrame" src="" style="width: 90%; height: 90%; position: absolute; left:4.5%; top:5%" frameBorder="0"></iframe>
     </div>
-    
     <!-- <iframe src="./intiatives.html" style="width: 100%; height: 100%;" frameBorder="0"></iframe> -->
   </div>
 </div>
