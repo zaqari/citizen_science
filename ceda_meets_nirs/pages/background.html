@@ -346,7 +346,7 @@ h3 {
     <p>
       <em><b>Why use RoBERTa embeddings (or another BERT-based model) rather than GPT-3+ generated embeddings?</b></em>
       <br>
-      Because GPT-series of models, while architecturally identical, exhibit high anisotropy due to the training task they are fit on. Every word vector looks very similar to every other word vector they produce (see: <a href="https://aclanthology.org/D19-1006/" target="_blank">Ethayarajh 2019</a>). It is likely for this reason that GPT models are not widely used in downstream tasks, even in industry. No one uses the GPT variants of sentence embeddings for their RAG architecture, and for a reason.
+      Because GPT-series of models, while architecturally identical to BERT-based models, exhibit high anisotropy due to the training task they are fit on. Every word vector looks very similar to every other word vector they produce (see: <a href="https://aclanthology.org/D19-1006/" target="_blank">Ethayarajh 2019</a>). It is likely for this reason that GPT models are not widely used in downstream tasks, even in industry. No one uses the GPT variants of sentence embeddings for their RAG architecture, and for a reason.
       <br><br>
       Nor is it cost effective or even necessary to use LLM embeddings (which are also still GPT variants). While we could have used modernBERT, it is not as widely available, nor as well documented, as RoBERTa and BERT proper.</p>
   </div>
