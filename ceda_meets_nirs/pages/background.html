@@ -302,19 +302,19 @@ h3 {
 <body>
 
 <div style="color: #777;background-color:white;text-align:left;padding:50px 80px;">
-  <h3 style="text-align:center;color:lightslategrey">DOES NEURAL ALIGNMENT PREDICT LEXICO-SEMANTIC ALIGNMENT?</h3>
+  <h3 style="text-align:center;color:lightslategrey">CONVERGING MISALIGNMENT: DOES NEURAL ALIGNMENT PREDICT LEXICO-SEMANTIC ALIGNMENT?</h3>
   <p><em><b>Authors:</b></em> Grace Qiyuan Miao (q.miao@ucla.edu), ZP Rosen, Ashley Binnquist, Rick Dale & Matthew Lieberman</p>
   <p></p>
 </div>
 
 <div style="position:relative;">
   <div style="color:white;background-color:#1b232c;text-align:left;padding:50px 80px;">
-    <h3 style="text-align:center;color:lightslategrey;">Merging Convergence-Entropy ratings with deaggregated fNIRS measurements</h3>
+    <h3 style="text-align:left;color:lightslategrey;">Merging Convergence-Entropy ratings with deaggregated fNIRS measurements</h3>
     <p>The final analysis attempts to predict convergence-entropy measurements based on fNIRS measurements at the channel level. To do so, we needed to accomplish the following: (1) calculate the convergence-entropy for an utterance made by one of the speakers in the dyad compared to the utterance made by the next speaker in that dyad, and (2) calculate the difference in each fNIRS channel measurement between the time that the speaker of the current utterance began speaking and when they ended.</p>
     <p>The following video walks through that process visually. Otherwise, step-by-step descriptions are provided below.</p>
     <iframe src="https://www.youtube.com/embed/1YZCyrav5sk?si=4eZRaRL4jWXvtDtc" style="width: 100%; height: 500px;" frameborder="0"></iframe>
     <p>Quick vocab check: let $x_1$ be the first utterance spoken by the speaker x, and $y_1$ be the first utterance spoken by the speaker y, and which occurs after $x_1$. Just keep in mind that the speaker y talks after the speaker x in these examples, and let the subscript just be that speaker $k^{th}$ turn. We also know, thanks to the amazing annotators who worked on this project, that the utterance $x_1$ started at some time $t=0$, and the uttearance $y_1$, which was spoken into existence after $x_1$ started at some time after $x_1$, i.e. $t > t(x_1)$. Keep these starting points in mind as we go on!</p>
-    <h4 style="text-align:leftr;color:rgb(77, 110, 175);">Calculating Convergence-Entropy</h4>
+    <h4 style="text-align:left;color:rgb(154, 164, 184);">Calculating Convergence-Entropy</h4>
     <p>The utterances $x_1$ and $y_1$--and every utterance afterwards in the conversation--are comprised of a set of words, or what we'll call tokens. That set can contain one token, but it can contain up to an infinite number of tokens, too, up until basically the heat death of the universe. The first step is to create word vectors (using the transformer language model, RoBERTa in this case) for every token $i$ in $x_1$, and every token $j$ in $y_1$. This yields a set of word vectors for every token in $x_1$, $E_{xi}$, and a set of word vectors for every token in $y_1$, $E_{yj}$.</p>
     <p>Once we have these word vectors in hand, for every single word vector in $E_{xi}$ we find the one word vector in $E_{yj}$ that has the lowest Cosine Error (CoE) with that word vector: $\min_j (E_{xi}, E_{yj})$.</p>
     <p>We now have a minimum CoE value for each word vector in $x_1$. But that tells us fairly little CoE is a measurement of distance, not probability, and definitely not information. So we need to convert that distance to a probability--something that quantifies the probability that we see two word vectors that are that close to eachother and would mistake them for meaning the same thing--and then from that probability we can calculate the entropy for each token, and then sum that. </p>
@@ -323,7 +323,7 @@ h3 {
     <p>Probability in hand, we can calculate the total entropy for the utterance $x_1$ based on the content of what's in $y_1$ using Claude Shannon's classic formula for entropy.</p>
     <p>$$ H[x_1|y_1] = -\sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y) $$</p>
     <br>
-    <h4 style="text-align:leftr;color:rgb(77, 110, 175);">Merging Convergence-Entropy with de-aggregated fNIRS data</h4>
+    <h4 style="text-align:left;color:rgb(154, 164, 184);">Merging Convergence-Entropy with de-aggregated fNIRS data</h4>
     <p>Alright. Recall that we know that the utterance $x_1$ starts at time $t[=0]$, and that the utterance $y_1$ starts at time $t > t(x_1)$. We can use that knowledge to identify the total number of samples in the fNIRS data for both the speaker x and the speaker y that were taken within that time range. We know that the sample resolution for fNIRS is  5.0863Hz. That means each sample in our measurements (think of them as being organized in a csv, where every row is a sample) occurs 1/5.0863 apart from eachother.</p>
     <p>Knowing that the $x_1$ starts at time $t$ we can use the sampling rate dscribed above to identify all the samples that were taken between time $t(x_1)$ and time $t(y_1)$ for both speakers in the dyad. We did exactly that for every utterance and timestamp in the annotated transcripts that we had available to us.</p>
     <p>Our hypotheses concerned <em>differences</em> between the fNIRS measurements. So we took the fNIRS measurements between $t(x_1)$ and $t(y_1)$ for both the speaker x and the speaker y. For every channel and every sample, we subtracted the measured fNIRS value for the speaker y from the fNIRS channel value for the speaker x. If you think of the fNIRS samples for the speaker x between times $t(x_1)$ and $t(y_1)$ as a matrix of shape "fNIRS Channels" $\times$ "rows between $t(x_1)$ and $t(y_1)$" (let's say $c \times t$ for short), then this is the subtraction of a $c \times t$ from a $c \times t$ matrix. We saved the absolute value of this process.</p>
@@ -337,13 +337,13 @@ h3 {
 
 <div style="position:relative;">
   <div style="color:rgb(0, 0, 0);background-color:#bedcfa;text-align:left;padding:50px 80px;">
-    <h3 style="text-align:center;color:lightslategrey;">FAQs</h3>
+    <h3 style="text-align:center;color:lightslategrey;font-size: 32px;">FAQs</h3>
     <p>
       <em><b>Why focus on a comparison between each token and not use a sentence-embedding model?</b></em>
       <br>
       Because word-wise comparisons are  more sensitive and, on the basis of the question of whether people converge at all, are more theoretically motivated. Any utterance made is comprised of myriad words and a set of, typically related, concepts that those words are used to cue us in the direction of (see: <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1551-6709.2009.01023.x" target="_blank">Elman 2009</a> and <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tops.12771" target="_blank">Contreras-Kallens & Christiansen 2023</a>). In any utterance I make, I might converge with part of what you said, and then expand on it with an entirely new idea. If I do that, then the global meaning of the utterance I make might be quite different than the utterance you previously made (which is what sentence-level embeddings are trained to be sensitive to), and yet significant portions of your prior utterance may still be converged to. I might also diverge strongly with part of what you said prior, but converge with you on some parts of your prior utterance. I could just say something random entirely. Heck, parts of this paragraph feel like exactly that. 
       <br><br>
-      By treating each token as a potential concept--a draw from a Bernoulli distribution wherein we ask "is this word and the concept it codes for based on how it is used in this sentence likely to be pulled from something my discursive partner has said" (see: <a href="https://link.springer.com/article/10.3758/s13428-023-02267-2" target="_blank">Rosen & Dale 2024</a>)--we are extracting fine-grained differences and similarities that would be missed if one uses a sentence-embedding model, which just averages over all the word vectors in an utterance. We do incur a cost, however, in the form greater computational complexity.
+      By treating each token as a potential concept--a draw from a Bernoulli distribution wherein we ask "is this word and the concept it codes for based on how it is used in this sentence likely to be pulled from something my discursive partner has said" (see: <a href="https://link.springer.com/article/10.3758/s13428-023-02267-2" target="_blank">Rosen & Dale 2023</a>)--we are extracting fine-grained differences and similarities that would be missed if one uses a sentence-embedding model, which just averages over all the word vectors in an utterance. We do incur a cost, however, in the form greater computational complexity.
     </p>
     <br><br>
     <p>
