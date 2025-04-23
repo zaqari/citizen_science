@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+a:link {
+  color: rgb(201, 178, 5);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(70, 5, 201);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("https://www.intotheminds.com/blog/app/uploads/desk-research-group-tn.jpg");
+  min-height: 20%;
+}
+
+.bgimg-2 {
+  background-image: url("https://edezach.files.wordpress.com/2020/11/bigmug.jpg");
+  min-height: 100%;
+}
+
+.bgimg-3 {
+  background-image: url("./images/brain.jpg");
+  min-height: 80%;
+}
+
+.bgimg-4 {
+  background-image: url("https://edezach.files.wordpress.com/2020/11/dnn18.png");
+  min-height: 15%;
+}
+
+.grey-block{
+  color: white;
+  background-color: #777;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.grey-H3{
+  color: white;
+  text-align: left;
+}
+
+.contact{
+  background-color: #1605a6;
+  color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-block{
+  color: #777;
+  background-color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-H3{
+  color: #777;
+  text-align: right;
+}
+
+.white-H5{
+  color: #777;
+  text-align: left;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="grey-block">
+  <h3 class="grey-H3">How well does coherence in various cortical regions?: Understanding the measurements reported</h3>
+  <br>
+  <p>The results here are calculated using a multivariate Wald-test to ascertain the degree to which the additive parameter estimates and their variance contribute to a coherent difference across all fNIRS channels belonging to the network. Significant results indicate that the effects reported are unexpected given the null hypothesis (that there is no coherent affect when adding together the parameter estimates and accounting for their associated variance) at a given alpha level.</p>
+  <p>For all figures, ◆ = p < .05; ⟐ = p < .01</p>
+  <br>
+</div>
+
+<div id="LLMs" class="white-block">
+  <h3 class="white-H3">Heterogeneous gender dyads</h3>
+  <p></p>
+  <div>
+    <iframe src="./regions-mixed-gender-networks.html" style="width: 100%; height: 400px;" frameBorder="0"></iframe>
+    <p></p>
+    <br>
+    <br>
+    <h4 class="white-H5">Tabular Results</h5>
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRscPdY8q2o0-tYoVtDt-PyDeluJ_NmRBrN_WsEzLhuy_wvBgtqc1v6mFRKF8bis_1DaMkOSkOVV88T/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false&amp;range=A1:F8&amp;chrome=false" style="width: 100%; height: 200px;" frameBorder="0"></iframe>
+  </div>
+  
+</div>
+
+<div id="LLMs" class="white-block">
+  <h3 class="white-H3">Homogeneous gender dyads</h3>
+  <p></p>
+  <div>
+    <iframe src="./regions-homogeneous-gender-networks.html" style="width: 100%; height: 400px;" frameBorder="0"></iframe>
+    <p></p>
+    <br>
+    <br>
+    <h4 class="white-H5">Tabular Results</h5>
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSVe70FDWKrw0R3HouTEhLjKiQww3QMwZ-mZ0Yne2_Yiw2inZaW4pZ18JuBVgvgtnZO5U-myHdxrakw/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false&amp;range=A1:F8&amp;chrome=false" style="width: 100%; height: 200px;" frameBorder="0"></iframe>
+  </div>
+</div>
+
+</body>
+</html>
