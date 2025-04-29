@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+a:link {
+  color: rgb(201, 178, 5);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(70, 5, 201);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("https://www.intotheminds.com/blog/app/uploads/desk-research-group-tn.jpg");
+  min-height: 20%;
+}
+
+.bgimg-2 {
+  background-image: url("https://edezach.files.wordpress.com/2020/11/bigmug.jpg");
+  min-height: 100%;
+}
+
+.bgimg-3 {
+  background-image: url("./images/brain.jpg");
+  min-height: 80%;
+}
+
+.bgimg-4 {
+  background-image: url("https://edezach.files.wordpress.com/2020/11/dnn18.png");
+  min-height: 15%;
+}
+
+.grey-block{
+  color: white;
+  background-color: #777;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.grey-H3{
+  color: white;
+  text-align: left;
+}
+
+.contact{
+  background-color: #1605a6;
+  color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.white-block{
+  color: #777;
+  background-color: white;
+  text-align: left;
+}
+
+.white-H3{
+  color: #777;
+  text-align: right;
+  padding: 50px 80px;
+}
+
+.white-H5{
+  color: #777;
+  text-align: left;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="grey-block">
+  <h2 style="font-size: 40px;">Results Using Pearson's R as Proxy Measurement of Neural Synchrony</h2>
+  <p>Using the LME model described in the background section, we report on our results for each network in two conditions: the heterogeneous gender condition, and the homogeneous gender condition.</p>
+  <p>The results here are calculated using a multivariate Wald-test to ascertain the degree to which the additive parameter estimates and their variance contribute to a coherent difference across all fNIRS channels belonging to the network. Significant results indicate that the effects reported are unexpected given the null hypothesis (that there is no coherent affect when adding together the parameter estimates and accounting for their associated variance) at a given alpha level.</p>
+  <p>For all figures, ◆ = p < .05; ⟐ = p < .01</p>
+  <br>
+</div>
+
+<div id="LLMs" class="white-block">
+
+  <!-- REGIONS -->
+  <h3 class="white-H3" style="text-align: left; font-size: 30px;">Cortical <em>regions</em> and lexico-semantic convergence</h3>
+  <p>This page focuses on a subset of distinct cortical regions that we were able to collect measurements for in the course of this study. Those include: The Left Lateral Prefrontal Cortex (L_lPFC), the Right Lateral Prefrontal Cortex (R_lPFC), the Medial Prefrontal Cortex (mPFC), the Left Superior Parietal Lobule (L_SPL), the Right Superior Parietal Lobule (R_SPL), the Left Temporoparietal Junction (L_TPJ), and the Right Temporoparietal Junction (R_TPJ).</p>
+
+  <h4 class="white-H3" style="font-size: 25px;">Heterogeneous gender dyads</h4>
+  <iframe src="./regions-mixed-gender-networks.html" style="width: 100%; height: 400px;" frameBorder="0"></iframe>
+  <p></p>
+  <br>
+  <br>
+  <h5 class="white-H5">Tabular Results</h5>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRkl4ZW3uxxrKT_ssHsEWiP6Li35kC__yK2XAhxZS3LN0EpvTkjQorOUf8k4XzLQVwTbR0iTVBaAksP/pubhtml?gid=1031383613&amp;single=true&amp;widget=true&amp;headers=false&amp;range=A1:E8&amp;chrome=false" style="width: 100%; height: 200px;" frameBorder="0"></iframe>
+  <p><a href="https://docs.google.com/spreadsheets/d/1-iNUa-eP4jq9khTmLjy_r3lfiop4fDb8kJpRZGG9DuU/edit?usp=sharing" target="_blank">Link to table</a></p>
+  <br>
+  <br>
+    
+  <h4 class="white-H3" style="font-size: 25px;">Homogeneous gender dyads</h4>
+  <iframe src="./regions-homogeneous-gender-networks.html" style="width: 100%; height: 400px;" frameBorder="0"></iframe>
+  <p></p>
+  <br>
+  <br>
+  <h5 class="white-H5">Tabular Results</h5>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRvgujTxi0tbmEHNucH9dkMvJCQSWBuEsU7fF3gH5WiY9cKXmum3FnN9eQg3fx0MTVNKjIIu_waJSuw/pubhtml?gid=279865442&amp;single=true&amp;widget=true&amp;headers=false&amp;range=A1:F8&amp;chrome=false" style="width: 100%; height: 200px;" frameBorder="0"></iframe>
+  <p><a href="https://docs.google.com/spreadsheets/d/1R1wzXiGz8-HuEhzvHzXLMdRWSPioGNwINNPdmrDAaU0/edit?usp=sharing" target="_blank">Link to table</a></p>
+
+  <!-- NETWORKS -->
+  <h3 class="white-H3" style="text-align: left; font-size: 30px;">Cortical <em>networks</em> and lexico-semantic convergence</h3>
+  <p>Here we focus on a subset of distinct networks, consisting of multiple interacting cortical regions: the Default Mode Network (DMN), the Frontal Parietal Network (FPN), the Ventral Attention Network (VAT), and the Dorsal Attention Network (DAT).</p>
+  
+  <h4 class="white-H3" style="font-size: 25px;">Heterogeneous gender dyads</h4>
+  <iframe src="./mixed-gender-networks.html" style="width: 100%; height: 400px;" frameBorder="0"></iframe>
+  <p></p>
+  <br>
+  <br>
+  <h5 class="white-H5">Tabular Results</h5>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSFHIuRFxt_mjFACDHXu9RgWFUeL99GYO3IDxNijBtGOdht10_dF-P4bxyv29ctrQPHbsJXHhq_RcEm/pubhtml?gid=335937142&amp;single=true&amp;widget=true&amp;headers=false&amp;range=A1:E5&amp;chrome=false" style="width: 100%; height: 200px;" frameBorder="0"></iframe>
+  <p><a href="https://docs.google.com/spreadsheets/d/1WtB7McmKom-9C-BFRgs9N8ezvYEfUa1_rKC_GW9L9Qo/edit?usp=sharing" target="_blank">Link to table</a></p>
+  <br>
+  <br>
+    
+  <h4 class="white-H3" style="font-size: 25px;">Homogeneous gender dyads</h4>
+  <iframe src="./homogeneous-gender-networks.html" style="width: 100%; height: 400px;" frameBorder="0"></iframe>
+  <p></p>
+  <br>
+  <br>
+  <h5 class="white-H5">Tabular Results</h5>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSdpBfCc4pkNWvMNvZ6dsolUyaUIJBgzvZd5oTjdg6lL7Odgnpzm4dc8wNff47da6JzrP0gyJ4QNZbL/pubhtml?gid=1717843549&amp;single=true&amp;widget=true&amp;headers=false&amp;range=A1:E5&amp;chrome=false" style="width: 100%; height: 200px;" frameBorder="0"></iframe>
+  <p><a href="https://docs.google.com/spreadsheets/d/1Ey_zKZY5mIi_kIveJ8JAVrHGW3S2tywAmBkthIh-DJs/edit?usp=sharing" target="_blank">Link to table</a></p>
+  <br>
+</div>
+  
+</div>
+
+</body>
+</html>
