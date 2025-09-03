@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$']]
+    }
+  };
+</script>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+hr {
+  border-width: 3px;
+}
+
+.dataframe {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.dataframe thead tr {
+    background-color: #000a98;
+    color: #ffffff;
+    text-align: left;
+}
+
+.dataframe th,
+.dataframe td {
+    padding: 12px 15px;
+}
+
+.dataframe tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.dataframe tbody tr.fancy-row {
+    padding: 0px;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #000;
+}
+
+.dataframe tbody tr:last-of-type {
+    border-bottom: 2px solid #000a98;
+}
+
+.dataframe tbody tr.active-row {
+    font-weight: bold;
+    background-color: #000a98;
+    color: #ffffff;
+}
+
+a:link {
+  color: rgb(201, 178, 5);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(70, 5, 201);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.bgimg-3 {
+  background-image: url("https://brightspotcdn.byu.edu/dims4/default/667d8a3/2147483647/strip/true/crop/3072x4080+0+0/resize/840x1116!/quality/90/?url=https%3A%2F%2Fbrigham-young-brightspot-us-east-2.s3.us-east-2.amazonaws.com%2Fed%2F68%2Fc9b2989f4ebfb3b1dd58350f3af4%2Ffnirs.jpg");
+  min-height: 80%;
+}
+
+.grey-block{
+  color: white;
+  background-color: #777;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.grey-H3{
+  color: white;
+  text-align: right;
+}
+
+.white-block{
+  color: #777;
+  background-color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.black-block{
+  color: white;
+  background-color: #000000;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.black-H3{
+  color: white;
+  text-align: right;
+}
+
+.white-H3{
+  color: #777;
+  text-align: right;
+}
+
+.blue-block{
+  color: white;
+  background-color: #2a1d64;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.blue-H3{
+  color: white;
+  text-align: right;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+<div style="text-align: right; font-size: .75em;">
+  Study design data collection and research questions by <b>@Grace Miao</b>. Statistical analyses and data visualizations by <b>@ZP Rosen (09/2025)</b>
+</div>
+<div class="bgimg-3" style="min-height: 50%;">
+  <div class="caption" id="title">
+    <span class="border">fNIRS meets CEDA</span>
+  </div>
+</div>
+
+<div class="black-block">
+  <h3 class="black-H3">Methods Descriptions</h3>
+  
+  <details>
+    <summary><b>Descriptions</b></summary>
+    <details>
+      <summary>&nbsp;&nbsp;<b>Convergence-Entropy</b></summary>
+      <div>
+        <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+        <p>We used the convergence-entropy metric (also known as the Entropy conVergence Metric or EVM) to calculate how similar the ideas expressed in one text, written by either one of our classmates or chatGPT, were to one another. EVM converts every word in a text into a word vector using a differnt LLM than chatGPT (we specifically used one called RoBERTa). The word vectors that are generated are actually really good at representing the semantic meaning of a word (Mikolov et al. 2013; Devlin et al. 2018; Utsumi 2020). Once we have those word vectors we calculate how likely two words mean the same thing by seeing how similar those two word vectors are to one another using something called their cosine error. If cosine error is close to zero then two word vectors are really similar to one another, and the words they represent probably mean the same thing.</p>
+        <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. $E_{xi}$ is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
+        <p>$$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$$</p>
+        <p>Once you have that value, you can calculate how much entropy -- how much random information -- the text $y$ adds to the text $x$ in order to get from the ideas expressed in the text $x$ to the ideas in the text $y$. via the equation below.</p>
+        <p>$$H(x;y) = - \sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y)$$</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>&nbsp;&nbsp;<b>Allan Variance</b></summary>
+      <p>Allan Variance is a measurement of variation over time in a signal or statistical distribution (<a href="http://ieeexplore.ieee.org/document/7406774/" target="_blank">Allan & Levine 2016</a>; <a href="https://ieeexplore.ieee.org/document/1537453" target="_blank">Snyder 1981</a>) and is measured as the total difference in a measurement for a time-series, minus it's future value and the how much that future value varies from the subsequent measurement. Formulaically, it is calculated as follows:</p>
+      <p>$AVAR = \frac{1}{2\tau^2} \Big\langle \left( x_{t+2n} - 2x_{t+n} - x_t  \right)^2 \Big\rangle$</p>
+      <p>Notably, the log-log transformed Allan Variance and temporal measurement for a given signal can be used to calculate exponential growth in a signal, $\alpha$ (<a href="https://doi.apa.org/doi/10.1037/xge0000021" target="_blank">Abney et al 2014</a>) -- which is used to characterize shifts in shared semantic and conceptual structures during conversation in the rest of this report.</p>
+    </details>
+
+    <details>
+      <summary>&nbsp;&nbsp;<b>Complexity Matching</b></summary>
+      <div>
+        <p><a href="https://doi.apa.org/doi/10.1037/xge0000021" target="_blank">Abney et al 2014</a> define complexity matching as the absolute value of the subtraction of Allan Variances for one participant versus the other. We implement the same measurement here in an effort to test whether variance from each time measurement in the fNIRS data is similar for both participants within the same time window (between when the speaker in the current turn starts their utterance and when the next speaker starts theirs).</p>
+        <p>$$\frac{1}{N} \sum \log \bigg| AVAR_{subject\_1} - AVAR_{subject\_2} \bigg|$$</p>
+      </div>
+    </details>
+  
+  </details>
+  
+
+</div>
+
+<div class="grey-block">
+  <h3 class="grey-H3">LME Regression Cooeficients and Statistics</h3>
+  <details>
+    <summary><b>Main LME effects</b></summary>
+    <table class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th>coefs</th>
+          <th>stat</th>
+          <th>p</th>
+          <th>CI[.025, .975]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>-6.3e-01</td>
+          <td>-9.37e+00</td>
+          <td>7.37e-21</td>
+          <td>[-7.61e-01, -4.98e-01]</td>
+        </tr>
+        <tr>
+          <td>-3.6e-04</td>
+          <td>-2.14e-01</td>
+          <td>8.31e-01</td>
+          <td>[-3.66e-03, 2.94e-03]</td>
+        </tr>
+        <tr>
+          <td>5.22e-04</td>
+          <td>3.09e-01</td>
+          <td>7.57e-01</td>
+          <td>[-2.79e-03, 3.83e-03]</td>
+        </tr>
+        <tr>
+          <td>1.31e-03</td>
+          <td>8.43e-01</td>
+          <td>3.99e-01</td>
+          <td>[-1.73e-03, 4.35e-03]</td>
+        </tr>
+        <tr>
+          <td>3.00e-04</td>
+          <td>1.86e-01</td>
+          <td>8.52e-01</td>
+          <td>[-2.85e-03, 3.45e-03]</td>
+        </tr>
+        <tr>
+          <td>-5.23e-04</td>
+          <td>-3.05e-01</td>
+          <td>7.61e-01</td>
+          <td>[-3.89e-03, 2.84e-03]</td>
+        </tr>
+        <tr>
+          <td>-5.76e-04</td>
+          <td>-3.39e-01</td>
+          <td>7.34e-01</td>
+          <td>[-3.90e-03, 2.75e-03]</td>
+        </tr>
+        <tr>
+          <td>-2.34e-03</td>
+          <td>-1.35e+00</td>
+          <td>1.77e-01</td>
+          <td>[-5.74e-03, 1.06e-03]</td>
+        </tr>
+        <tr>
+          <td>7.47e-04</td>
+          <td>4.12e-01</td>
+          <td>6.80e-01</td>
+          <td>[-2.81e-03, 4.30e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.39e-04</td>
+          <td>-7.99e-02</td>
+          <td>9.36e-01</td>
+          <td>[-3.54e-03, 3.27e-03]</td>
+        </tr>
+        <tr>
+          <td>-3.33e-03</td>
+          <td>-1.86e+00</td>
+          <td>6.35e-02</td>
+          <td>[-6.84e-03, 1.87e-04]</td>
+        </tr>
+        <tr>
+          <td>1.6e-03</td>
+          <td>8.92e-01</td>
+          <td>3.72e-01</td>
+          <td>[-1.91e-03, 5.11e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.18e-05</td>
+          <td>-6.95e-03</td>
+          <td>9.94e-01</td>
+          <td>[-3.34e-03, 3.32e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.43e-03</td>
+          <td>-8.01e-01</td>
+          <td>4.23e-01</td>
+          <td>[-4.92e-03, 2.07e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.87e-03</td>
+          <td>-1.06e+00</td>
+          <td>2.89e-01</td>
+          <td>[-5.33e-03, 1.59e-03]</td>
+        </tr>
+        <tr>
+          <td>1.77e-03</td>
+          <td>1.08e+00</td>
+          <td>2.78e-01</td>
+          <td>[-1.43e-03, 4.98e-03]</td>
+        </tr>
+        <tr>
+          <td>1.55e-03</td>
+          <td>8.7e-01</td>
+          <td>3.84e-01</td>
+          <td>[-1.94e-03, 5.04e-03]</td>
+        </tr>
+        <tr>
+          <td>1.92e-04</td>
+          <td>1.13e-01</td>
+          <td>9.10e-01</td>
+          <td>[-3.14e-03, 3.52e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.93e-03</td>
+          <td>-1.17e+00</td>
+          <td>2.43e-01</td>
+          <td>[-5.17e-03, 1.31e-03]</td>
+        </tr>
+        <tr>
+          <td>2.66e-03</td>
+          <td>1.64e+00</td>
+          <td>1.01e-01</td>
+          <td>[-5.14e-04, 5.83e-03]</td>
+        </tr>
+        <tr>
+          <td>-5.43e-04</td>
+          <td>-3.48e-01</td>
+          <td>7.28e-01</td>
+          <td>[-3.6e-03, 2.51e-03]</td>
+        </tr>
+        <tr>
+          <td>-2.36e-03</td>
+          <td>-1.1e+00</td>
+          <td>2.72e-01</td>
+          <td>[-6.56e-03, 1.84e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.4e-03</td>
+          <td>-7.2e-01</td>
+          <td>4.72e-01</td>
+          <td>[-5.21e-03, 2.41e-03]</td>
+        </tr>
+        <tr>
+          <td>1.41e-03</td>
+          <td>7.39e-01</td>
+          <td>4.6e-01</td>
+          <td>[-2.33e-03, 5.15e-03]</td>
+        </tr>
+        <tr>
+          <td>-3.19e-05</td>
+          <td>-1.59e-02</td>
+          <td>9.87e-01</td>
+          <td>[-3.96e-03, 3.89e-03]</td>
+        </tr>
+        <tr>
+          <td>-2.41e-03</td>
+          <td>-1.25e+00</td>
+          <td>2.12e-01</td>
+          <td>[-6.18e-03, 1.37e-03]</td>
+        </tr>
+        <tr>
+          <td>-2.37e-03</td>
+          <td>-1.27e+00</td>
+          <td>2.04e-01</td>
+          <td>[-6.03e-03, 1.29e-03]</td>
+        </tr>
+        <tr>
+          <td>4.24e-04</td>
+          <td>2.08e-01</td>
+          <td>8.35e-01</td>
+          <td>[-3.56e-03, 4.41e-03]</td>
+        </tr>
+        <tr>
+          <td>1.54e-03</td>
+          <td>9.30e-01</td>
+          <td>3.52e-01</td>
+          <td>[-1.70e-03, 4.78e-03]</td>
+        </tr>
+        <tr>
+          <td>-2.17e-03</td>
+          <td>-1.19e+00</td>
+          <td>2.34e-01</td>
+          <td>[-5.74e-03, 1.40e-03]</td>
+        </tr>
+        <tr>
+          <td>8.23e-04</td>
+          <td>4.50e-01</td>
+          <td>6.52e-01</td>
+          <td>[-2.76e-03, 4.41e-03]</td>
+        </tr>
+        <tr>
+          <td>2.18e-03</td>
+          <td>1.19e+00</td>
+          <td>2.36e-01</td>
+          <td>[-1.43e-03, 5.79e-03]</td>
+        </tr>
+        <tr>
+          <td>5.66e-05</td>
+          <td>3.07e-02</td>
+          <td>9.75e-01</td>
+          <td>[-3.55e-03, 3.67e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.32e-03</td>
+          <td>-6.89e-01</td>
+          <td>4.91e-01</td>
+          <td>[-5.07e-03, 2.43e-03]</td>
+        </tr>
+        <tr>
+          <td>2.24e-03</td>
+          <td>1.09e+00</td>
+          <td>2.77e-01</td>
+          <td>[-1.79e-03, 6.27e-03]</td>
+        </tr>
+        <tr>
+          <td>-9.91e-04</td>
+          <td>-5.18e-01</td>
+          <td>6.04e-01</td>
+          <td>[-4.74e-03, 2.76e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.47e-03</td>
+          <td>-7.59e-01</td>
+          <td>4.48e-01</td>
+          <td>[-5.25e-03, 2.32e-03]</td>
+        </tr>
+        <tr>
+          <td>-3.52e-04</td>
+          <td>-1.74e-01</td>
+          <td>8.62e-01</td>
+          <td>[-4.32e-03, 3.62e-03]</td>
+        </tr>
+        <tr>
+          <td>-6.59e-03</td>
+          <td>-3.99e+00</td>
+          <td>6.72e-05</td>
+          <td>[-9.83e-03, -3.35e-03]</td>
+        </tr>
+        <tr>
+          <td>-3.49e-05</td>
+          <td>-1.97e-02</td>
+          <td>9.84e-01</td>
+          <td>[-3.52e-03, 3.45e-03]</td>
+        </tr>
+        <tr>
+          <td>1.19e-04</td>
+          <td>6.96e-02</td>
+          <td>9.44e-01</td>
+          <td>[-3.23e-03, 3.47e-03]</td>
+        </tr>
+        <tr>
+          <td>-1.09e-02</td>
+          <td>-5.17e+01</td>
+          <td>0.e+00</td>
+          <td>[-1.13e-02, -1.05e-02]</td>
+        </tr>
+        <tr>
+          <td>3.41e-01</td>
+          <td>1.61e+03</td>
+          <td>0.e+00</td>
+          <td>[3.41e-01, 3.41e-01]</td>
+        </tr>
+        <tr>
+          <td>5.81e-05</td>
+          <td>1.93e+00</td>
+          <td>5.36e-02</td>
+          <td>[-9.07e-07, 1.17e-04]</td>
+        </tr>
+        <tr>
+          <td>5.62e-08</td>
+          <td>4.82e-03</td>
+          <td>9.96e-01</td>
+          <td>[-2.28e-05, 2.29e-05]</td>
+        </tr>
+        <tr>
+          <td>5.92e-02</td>
+          <td>6.66e+00</td>
+          <td>2.67e-11</td>
+          <td>[4.18e-02, 7.66e-02]</td>
+        </tr>
+      </tbody>
+    </table>
+  </details>
+</div>
+
+<div class="white-block">
+  <h3 class="white-H3">By-Region Effects</h3>
+  <details>
+    <summary>Results</summary>
+    <div>
+      <iframe src="./results/region-results.html" style="width: 100%; height: 350px;" frameborder="0"></iframe>
+    </div>
+    <details>
+      <summary>&nbsp;&nbsp;<b>F-Statistic Table</b></summary>
+      <div>
+        <table class="dataframe">
+          <thead>
+            <tr style="text-align: right;">
+              <th>region</th>
+              <th>estim</th>
+              <th>n_individual_params</th>
+              <th>f_stat</th>
+              <th>p</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>L_lPFC</td>
+              <td>0.000670</td>
+              <td>6</td>
+              <td>0.047930</td>
+              <td>0.826708</td>
+            </tr>
+            <tr>
+              <td>mPFC</td>
+              <td>-0.006771</td>
+              <td>8</td>
+              <td>3.978296</td>
+              <td>0.046103</td>
+            </tr>
+            <tr>
+              <td>R_lPFC</td>
+              <td>0.003700</td>
+              <td>6</td>
+              <td>1.424612</td>
+              <td>0.232659</td>
+            </tr>
+            <tr>
+              <td>L_TPJ</td>
+              <td>-0.004193</td>
+              <td>7</td>
+              <td>2.086327</td>
+              <td>0.148638</td>
+            </tr>
+            <tr>
+              <td>R_TPJ</td>
+              <td>-0.007078</td>
+              <td>7</td>
+              <td>5.438025</td>
+              <td>0.019712</td>
+            </tr>
+            <tr>
+              <td>L_SPL</td>
+              <td>-0.002342</td>
+              <td>3</td>
+              <td>0.676015</td>
+              <td>0.410971</td>
+            </tr>
+            <tr>
+              <td>R_SPL</td>
+              <td>0.000919</td>
+              <td>3</td>
+              <td>0.118108</td>
+              <td>0.731099</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+  </details>
+</div>
+
+<div class="blue-block">
+  <h3 class="blue-H3">By-Network Effects</h3>
+  <details>
+    <summary>Results</summary>
+    <div>
+      <iframe src="./results/network-results.html" style="width: 100%; height: 350px;" frameborder="0"></iframe>
+    </div>
+    <details>
+      <summary>&nbsp;&nbsp;<b>F-Statistic Table</b></summary>
+      <div>
+      <table class="dataframe">
+        <thead>
+          <tr style="text-align: right;">
+            <th>region</th>
+            <th>estim</th>
+            <th>n_individual_params</th>
+            <th>f_stat</th>
+            <th>df_num</th>
+            <th>df_denom</th>
+            <th>pooled_variance</th>
+            <th>p</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DMN</td>
+            <td>-0.013808</td>
+            <td>13</td>
+            <td>8.765245</td>
+            <td>1.0</td>
+            <td>21303</td>
+            <td>0.000022</td>
+            <td>0.003074</td>
+          </tr>
+          <tr>
+            <td>FPN</td>
+            <td>-0.000903</td>
+            <td>13</td>
+            <td>0.029684</td>
+            <td>1.0</td>
+            <td>21303</td>
+            <td>0.000027</td>
+            <td>0.863211</td>
+          </tr>
+          <tr>
+            <td>VAT</td>
+            <td>0.000213</td>
+            <td>8</td>
+            <td>0.002659</td>
+            <td>1.0</td>
+            <td>21303</td>
+            <td>0.000017</td>
+            <td>0.958877</td>
+          </tr>
+          <tr>
+            <td>DAT</td>
+            <td>-0.000597</td>
+            <td>6</td>
+            <td>0.029730</td>
+            <td>1.0</td>
+            <td>21303</td>
+            <td>0.000012</td>
+            <td>0.863106</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </details>
+
+  </details>
+</div>
+
+<div class="bgimg-3" style="min-height: 35%;"></div>
+
+</body>
+</html>
