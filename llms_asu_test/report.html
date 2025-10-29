@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" hllref="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$']]
+      }
+    };
+  </script>
+  
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font: 400 15px/1.8 "Lato", sans-serif;
+      color: #777;
+    }
+    a:link {
+      color: rgb(201, 178, 5);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: rgb(70, 5, 201);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    h3 {
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font: 20px "Lato", sans-serif;
+      color: #111;
+    }
+
+    .grey-block{
+      color: white;
+      background-color: #282E34;
+      text-align: left;
+      padding: 50px 80px;
+    }
+
+    .grey-H3{
+      color: rgb(164, 162, 6);
+      text-align: left;
+    }
+
+    .white-block{
+      color: #777;
+      background-color: white;
+      text-align: left;
+      padding: 50px 80px;
+    }
+
+    .white-H3{
+      color: #282E34;
+      text-align: left;
+    }
+
+    .whitish-H3{
+      color: #4a5560;
+      text-align: left;
+    }
+
+    .results-block{
+      color: white;
+      background-color: black;
+      text-align: left;
+      padding: 50px 80px;
+    }
+
+    .results-H3{
+      color: white;
+      text-align: left;
+      font-size: 40px;
+    }
+
+    .caption {
+      position:fixed;
+      top: 2%;
+      width: 100%;
+      text-align: center;
+      color: #000;
+    }
+
+    .caption span.border {
+      background-color: #111;
+      color: #fff;
+      padding: 18px;
+      font-size: 20px;
+      /*letter-spacing: 10px;*/
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+<div class="caption">
+  <span class="border">On chatGPT versus humans' diversity of opinions</span>
+</div>
+
+<div style="color: #777;background-color:white;text-align:left;padding:50px 80px;text-align: justify;">
+  <h3 style="text-align:center;color:lightslategrey">SYNTHETIC TEXT IS HOMOGENEOUS</h3>
+  <p>Despite fears surrounging the supposedly widespread use of LLMs in generating academic writing, it remains to be seen what the <em>quality</em> of such texts actually is. There are of course conversations surrounding the ethics of using such algorithms in the classroom (Bender et al. 2021; Yan et al. 2024), and certainly LLMs don't produce text the way that people do on the basis of how they are "trained"/manufactured (Bender & Koller 2020; Bender et al.  2021). In fact, the consensus amongst people who work in the field of computational linguistics is that while LLMs can produce text that is coherent, they do so by exploiting statistical regularities in aggregate human texts rather than "understanding" what the patterns in said texts mean (Titus 2024). Simply put: LLMs don't write like people because they don't treat language the way that people do, even if what they produce is grammatically correct.</p> 
+  <p>Scholars argue that generative AI's homogenization of discourse is cause for significant alarm. (<a href="https://www.pnas.org/doi/full/10.1073/pnas.2401227121" target="_blank">Binz et al., 2025</a>; <a href="https://zenodo.org/records/17065099" target="_blank">Guest et al. 2025</a>; see <a href="https://olivia.science/ai">Olivia Guest's Critical AI Literacy</a> and <a href="https://thebullshitmachines.com/" target="_blank">thebullshitmachines.com</a> for interactive lesson plans on this and other aspects of contemporary AI discourse)</p>
+  <p>The thing of it is, all argumentation, and all writing, is really designed to be informative and useful in one of two ways: either (1) the content of an argument can be verified factually, or (2) the argument represents part of the diversity of opinions of real people, having to live with real consequences, on a given issue. If AI produces homogeneous text, with recurrent opinions, which may also be true or not, then it fails on both counts. "Hallucinated" content can't be fixed (). But is it possible that AIs generate the same diversity of opinions as people do on contentious issues? We tested that by answering the question: "Do you personally feel like it’s okay for AI to help students with their homework? If you can think of one you've read recently, use a piece of external evidence—think: a journal article or magazine—to help justify your opinion."</p>
+</div>
+
+<div style="position:relative;">
+  <div class="grey-block">
+    <h3 class="grey-H3">Convergence Entropy</h3>
+    <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+    <p>We used the convergence-entropy metric (also known as the Entropy conVergence Metric or EVM) to calculate how similar the ideas expressed in one text, written by either one of our classmates or chatGPT, were to one another. EVM converts every word in a text into a word vector using a differnt LLM than chatGPT (we specifically used one called RoBERTa). The word vectors that are generated are actually really good at representing the semantic meaning of a word (Mikolov et al. 2013; Devlin et al. 2018; Utsumi 2020). Once we have those word vectors we calculate how likely two words mean the same thing by seeing how similar those two word vectors are to one another using something called their cosine error. If cosine error is close to zero then two word vectors are really similar to one another, and the words they represent probably mean the same thing.</p>
+    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. $E_{xi}$ is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
+    <p>$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$</p>
+    <p>Once you have that value, you can calculate how much entropy -- how much random information -- the text $y$ adds to the text $x$ in order to get from the ideas expressed in the text $x$ to the ideas in the text $y$. via the equation below.</p>
+    <p>$H(x;y) = - \sum_i P(E_{xi}|E_y) \log P(E_{xi}|E_y)$</p>
+  </div>
+</div>
+
+<div class="white-block">
+  <h3 class="white-H3">Collecting the data</h3>
+    <p>To collect our LLM data, we generated responses from GPT-4 using 25 different prompts, where for each prompt we asked GPT-4 to take on a different persona. The thought being that if GPT-4 is acting like different people, then the kinds of things it should focus on its responses, and thus the kinds of things it should say, should be different from one another in the same way that when different people answer a question they answer it in different ways depending on what their experiences are. Those different experiences will dictate what people focus on when they respond to a question.</p> 
+    <p>GPT-4 never saw what it wrote in response to a prior prompt, so each time was a little different.</p>
+    <p>To collect student data, students responded to the same question we posed to GPT-4. Those responses were collected on canvas and then used as inputs to the EVM method as listed above.</p>
+    <p>We made a document containing pairwise comparisons for each student to another student as well as for each student to each LLM generated response, and each LLM generated response to every other LLM generated response. This document was what we used to calculate EVM values.</p>
+    <p>We created a second document as well comparing each response to the prompt to the prompt itself for both students and the llm generated texts. This document was what we used to calculate EVM values in a second experiment.</p>
+</div>
+
+<div style="position:relative;">
+  <div class="grey-block">
+    <h3 class="grey-H3">Testing for differences</h3>
+    <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+    <p>We tested the way EVM values differed across each comparison using a custom regression model written in JAGS. The equation for our regression model is below.</p>
+    <p>$H(x;y) \sim  P_{N} \left( \theta_{xy}, \epsilon_{p} \right) $</p>
+    <p>$\theta_{xy} = \beta_{c} \delta_{c} + \beta_{n_x} n_x + \beta_{n_y} n_y $</p>
+    <p>Where $H(x;y)$ is the entropy we observed, $c$ is the condition we looked at -- either a person compared to another person (in which case this value is 1), a person compared to llm response (in which case this value is 0), or an llm compared to an llm (in which case this value was 1). $n_x$ is how many words are in the text $x$, and $n_y$ is how many words are in the text $y$, and $p$ just means the person who wrote the text. $\epsilon_p$ is how much variance or extra noise is left over for every person or llm in the data. $\delta_c$ is a "switch" that multiples $\beta_c$ times 1 if one of the conditions in the list below are true.</p>
+    <p>$\delta_c = \begin{cases} 1 & \text{if } c \in \text{ [ x & y are llms, x & y are students] } \\ 0 & elsewhere \end{cases}$</p>
+    <p>Our main hypothesis is that $\beta_c$ for when it's true that we are comparing an LLM text to another LLM text, that this value is actually negative. We also assume that $\beta_c$ is higher for the comparison between a human to another human. Putting it really simply: $\beta_{c=\text{x & y are llms}} < \beta_{c=\text{x & y are students}}$</p>
+  </div>
+</div>
+
+<div style="position:relative;">
+  <div class="grey-block">
+    <h3 class="grey-H3">Who writes more exciting responses?</h3>
+    <p>We wanted to know: "who writes more exciting text? Who writes things that take us farther away from what's said in the prompt in cool or interesting ways?"</p> 
+    <p>To answer that, we calculated EVM values for the prompt that both students and LLMs responded to, for every human and every LLM response we got.</p>
+    <p>We tested the way EVM values differed across each comparison using a custom regression model written in JAGS. The equation for our regression model is below.</p>
+    <p>$H(x;y) \sim P_{N} \left(  \phi_{xy}, \epsilon_{p} \right)$</p>
+    <p>$\phi_{xy} = \beta_{llm} \delta_{llm} + \beta_{n_x} n_x + \beta_{n_y} n_y$</p>
+    <p>Just like last time, $n_x$ is how many words are in the text $x$, $n_y$ is how many words are in the text $y$, and $p$ just means the person who wrote the text. $\delta_{llm}$ is a "switch" that multiples $\beta_{llm}$ times 1 if the writer was an LLM (i.e. $u = llm$).</p>
+    <p>$\delta_{llm} = \begin{cases} 1 & \text{if } u = llm \\ 0 & elsewhere \end{cases}$</p>
+    <p>We then used this to calculate a residual value for each student and each bot response., where we looked at, for each student in our dataset, how wrong the prediction for how much convergence-entropy there should be if we only considered how long the prompt was and how long the response was. If this residual value is close to 0 or negative, that means that you can recover a lot of information about what was in the prompt, but that the person or bot responding to the prompt didn't add in a lot of novel information that would otherwise be exciting or interesting to read.</p>
+    <p>To say we had a hypothesis isn't quite right in this case. This was an exploratory analysis. But we hoped that students would in general have higher EVM values indicating that they responded in ways that were generally more exciting.</p>
+  </div>
+</div>
+
+<div class="results-block">
+  <h3 class="results-H3">OUR FINDINGS</h3>
+  <h3 class="whitish-H3">How much more or less information do LLMs contribute when compared to one another? Compared to humans?</h3>
+  <p>The interactive graph below shows just how much more or less information both LLMs and humans bring into the texts they produce as outputs when compared to another speaker in the same condition (i.e. comparing two humans to one another and comparing two LLM outputs to one another). The lower this number is, the more predictable two texts are when compared to one another. And so if you're looking for interesting/exciting writing where either people or LLMs write in ways that are different from one another, you hope that the values reported here are higher.</p>
+  <div>
+    <embed src="https://zaqari.github.io/citizen_science/llms_asu_test/within-condition-similarly-results.html" style="width: 100%; height: 800px; display: block" frameBorder="0"/>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h3 class="whitish-H3">How close are most of us to sounding robotic?</h3>
+  <p>The point is to be on the right-hand side of the line here . . . so how many of us ended up on that side??</p>
+  <div>
+    <embed src="https://zaqari.github.io/citizen_science/llms_asu_test/are-we-robots-results.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>
+  </div>
+  <p>All the values reported here are based on the residual (how off the predicted value of convergence-entropy is compared to the actual value) if we treated every student as an LLM. In other words . . .</p>
+  <p>$H(x_{llm};y_{student}) \sim P_{N} \left( \theta_{xy}, \epsilon_p \right)$</p>
+  <p>Where</p>
+  <p>$\theta_{xy} = \beta_{c} \cdot 1 + \beta_{n_x} n_x + \beta_{n_y} n_y $</p>
+  <p>And the residual is calculated via</p>
+  <p>$H(x_{llm};y_{student}) - \hat{H}(x_{llm};y_{student})$</p>
+  <p>Here $\hat{H}$ just means we're using the predicted entropy based off of the equations we listed above.</p>
+  <br>
+  <br>
+<!--  <br>-->
+<!--  <br>-->
+<!--  <h3 class="whitish-H3">Do LLMs or people take the prompt in more directions?</h3>-->
+<!--  <p>The prompt is a starting point for the writing students engaged in. And exciting writing will take the prompt in a direction that was less predictable. And so, the question is whether humans or LLMs will have higher entropy (the values reported on here) in recovering the exact ideas expressed in the prompt. Higher entropy means that the writer went off in a more exciting direction.</p>-->
+<!--  <div>-->
+<!--    <embed src="https://zaqari.github.io/citizen_science/llms_reductive_text/exciting-writing.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>-->
+<!--  </div>-->
+<!--  <p>All the values reported here are based on the residual (how off the predicted value of convergence-entropy is compared to the actual value). Using the math from the methods section, that looks like: </p>-->
+<!--  <p>$H(x_{prompt};y) \sim P_{N} \left(  \phi_{xy}, \epsilon_{p} \right)$</p>-->
+<!--  <p>$\phi_{xy} = \beta_{llm} \delta_{llm} + \beta_{n_x} n_x + \beta_{n_y} n_y$</p>-->
+<!--  <p>And the residual is calculated via</p>-->
+<!--  <p>$H(x_{prompt};y) - \hat{H}(x_{prompt};y)$</p>-->
+<!--  <p>Here $\hat{H}$ just means we're using the predicted entropy based off of the equations we listed above.</p>-->
+</div>
+<!-- <div style="position:relative;">
+  <div style="color:#282E34;background-color:white;text-align:left;padding:50px 80px;">
+    <h3 style="text-align:left;color:rgb(164, 162, 6);">Project Contributors</h3>
+    <iframe src="contributors.txt" width="90%" height="300px" frameborder="0%" id="contributors_frame" scrolling="yes"></iframe>
+</div> -->
+
+<div style="position: relative;">
+  <div style>
+
+  </div>
+
+</div>
+
+<div style="position:relative;">
+  <div style="color:white;background-color:#03396f;text-align:left;padding:50px 80px;">
+    <h3 style="text-align:center;color:lightslategrey;">Rererences</h3>
+    <p>Bender, E. M., Gebru, T., McMillan-Major, A., & Shmitchell, S. (2021). On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜. Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency, 610–623. https://doi.org/10.1145/3442188.3445922</p>
+    <p>Bender, E. M., & Koller, A. (2020). Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data. In D. Jurafsky, J. Chai, N. Schluter, & J. Tetreault (Eds.), Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (pp. 5185–5198). Association for Computational Linguistics. https://doi.org/10.18653/v1/2020.acl-main.463</p>
+    <p>Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M., Zettlemoyer, L., & Stoyanov, V. (2019). RoBERTa: A Robustly Optimized BERT Pretraining Approach (arXiv:1907.11692). arXiv. https://doi.org/10.48550/arXiv.1907.11692</p>
+    <p>Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013). Efficient Estimation of Word Representations in Vector Space. Arxiv.</p>
+    <p>Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv:1810.04805 [Cs]. http://arxiv.org/abs/1810.04805</p>
+    <p>Rosen, Z. P., & Dale, R. (2023). BERTs of a feather: Studying inter- and intra-group communication via information theory and language models. Behavior Research Methods. https://doi.org/10.3758/s13428-023-02267-2</p>
+    <p>Rosen, Z. P., & Dale, R. (2024). LLMs Don’t “Do Things with Words” but Their Lack of Illocution Can Inform the Study of Human Discourse. Proceedings of the Annual Meeting of the Cognitive Science Society, 46(0). https://escholarship.org/uc/item/25k7z0mz</p>
+    <p>Titus, L. M. (2024). Does ChatGPT have semantic understanding? A problem with the statistics-of-occurrence strategy. Cognitive Systems Research, 83, 101174. https://doi.org/10.1016/j.cogsys.2023.101174</p>
+    <p>Utsumi, A. (2020). Exploring What Is Encoded in Distributional Word Vectors: A Neurobiologically Motivated Analysis. Cognitive Science, 44(6), e12844. https://doi.org/10.1111/cogs.12844</p>
+    <p>Yan, L., Sha, L., Zhao, L., Li, Y., Martinez-Maldonado, R., Chen, G., Li, X., Jin, Y., & Gašević, D. (2024). Practical and ethical challenges of large language models in education: A systematic scoping review. British Journal of Educational Technology, 55(1), 90–112. https://doi.org/10.1111/bjet.13370</p>
+  </div>
+</div>
+
+
+</body>
+
+
+
+</html>
