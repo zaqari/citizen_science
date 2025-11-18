@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$']]
+    }
+  };
+</script>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+
+hr {
+  border-width: 3px;
+}
+
+.dataframe {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.dataframe thead tr {
+    background-color: #000a98;
+    color: #ffffff;
+    text-align: left;
+}
+
+.dataframe th,
+.dataframe td {
+    padding: 12px 15px;
+}
+
+.dataframe tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.dataframe tbody tr.fancy-row {
+    padding: 0px;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #000;
+}
+
+.dataframe tbody tr:last-of-type {
+    border-bottom: 2px solid #000a98;
+}
+
+.dataframe tbody tr.active-row {
+    font-weight: bold;
+    background-color: #000a98;
+    color: #ffffff;
+}
+
+a:link {
+  color: rgb(201, 178, 5);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(70, 5, 201);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.bgimg-3 {
+  background-image: url("https://d1tq208oegmb9e.cloudfront.net/site_photos_image/dbx%3A/urban+project/orange+county/huntington+beach/village+court/Photos/14.jpg");
+  min-height: 80%;
+}
+
+.grey-block{
+  color: white;
+  background-color: #777;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.grey-H3{
+  color: white;
+  text-align: right;
+}
+
+.white-block{
+  color: #777;
+  background-color: white;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.black-block{
+  color: white;
+  background-color: #000000;
+  text-align: left;
+  padding: 50px 80px;
+}
+
+.black-H3{
+  color: white;
+  text-align: right;
+}
+
+.white-H3{
+  color: #777;
+  text-align: right;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+<div style="text-align: right; font-size: .75em;">
+  Data entry, analysis, and data visualizations by <b>@<a href="https://zaqari.github.io", target="_blank">ZP Rosen</a> (11/18/2025)</b>
+</div>
+<div class="bgimg-3" style="min-height: 50%;">
+  <div class="caption" id="title">
+    <span class="border">VILLAGE COURT HOA FINANCIAL HEALTH DESCRIPTORS</span>
+  </div>
+</div>
+
+<div class="black-block">
+  <h3 class="black-H3">Executive overview</h3>
+  
+  <details>
+    <summary><b>Summary</b></summary>
+    <p>The objective of this dashboard is to provide a visualization of our current month-to-month financials. From this perspective, it should be easier to then assess the community's financial health and make informed, public decisions.</p>
+
+    
+  
+  </details>
+  
+
+</div>
+
+<div class="white-block">
+  <h3 class="white-H3">YTD Administrative Costs</h3>
+  <iframe src="./YTD-admin.html" style="overflow-x: scroll; width: 100%; height: 500px; left:4.5%; top:5%" frameBorder="0"></iframe>
+</div>
+
+<div class="grey-block">
+  <h3 class="grey-H3">YTD Operating Costs</h3>
+  <iframe src="./YTD-operating.html" style="overflow-x: scroll; width: 100%; height: 500px; left:4.5%; top:5%" frameBorder="0"></iframe>
+</div>
+
+<div class="white-block">
+  <h3 class="white-H3">YTD VC HOA residuals (monthly dues/regular assessments - monthly costs) </h3>
+  <p>Most months of the year (7/10) we currently take in more than our costs in dues alone. Our current dues, assuming our contracts are comparable, are liable to cover our costs and then some moving forward.</p>
+  <iframe src="./YTD-dues-minus-costs.html" style="overflow-x: scroll; width: 100%; height: 500px; left:4.5%; top:5%" frameBorder="0"></iframe>
+</div>
+
+<div class="bgimg-3" style="min-height: 35%;"></div>
+
+</body>
+</html>
