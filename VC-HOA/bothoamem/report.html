@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" hllref="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$']]
+      }
+    };
+  </script>
+  
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font: 400 15px/1.8 "Lato", sans-serif;
+      color: #777;
+    }
+    a:link {
+      color: rgb(201, 178, 5);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: rgb(70, 5, 201);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    h3 {
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font: 20px "Lato", sans-serif;
+      color: #111;
+    }
+
+    .grey-block{
+      color: white;
+      background-color: #282E34;
+      text-align: left;
+      padding: 50px 80px;
+    }
+
+    .grey-H3{
+      color: rgb(164, 162, 6);
+      text-align: left;
+    }
+
+    .white-block{
+      color: #777;
+      background-color: white;
+      text-align: left;
+      padding: 50px 80px;
+    }
+
+    .white-H3{
+      color: #282E34;
+      text-align: left;
+    }
+
+    .whitish-H3{
+      color: #4a5560;
+      text-align: left;
+    }
+
+    .results-block{
+      color: white;
+      background-color: black;
+      text-align: left;
+      padding: 50px 80px;
+    }
+
+    .results-H3{
+      color: white;
+      text-align: left;
+      font-size: 40px;
+    }
+
+    .caption {
+      position:fixed;
+      top: 2%;
+      width: 100%;
+      text-align: center;
+      color: #000;
+    }
+
+    .caption span.border {
+      background-color: #111;
+      color: #fff;
+      padding: 18px;
+      font-size: 20px;
+      /*letter-spacing: 10px;*/
+    }
+  </style>
+
+</head>
+
+<body>
+
+
+<div class="caption">
+  <span class="border">Woops, busted using chatGPT for HOA business</span>
+</div>
+
+<div style="color: #777;background-color:white;text-align:left;padding:50px 80px;text-align: justify;">
+  <h3 style="text-align:center;color:lightslategrey">WHY SYNTHETIC ("AI") TEXT SUCKS</h3>
+  <p><a href="https://arxiv.org/abs/2506.08872" target="_blank">Study</a> after <a href="google.com/url?q=https://academic.oup.com/edited-volume/59762/chapter-abstract/511416679?redirectedFrom%3Dfulltext&source=gmail&ust=1784427069950000&usg=AOvVaw2skZ19uMppibFjPdtzLvPv" target="_blank">study</a> has shown that text generated via generative AI is not a reliable source of truth or information in and of itself. And often times, when one relies on using LLMs for knowledge work, <a href="https://www.nsta.org/blog/think-or-not-think-impact-ai-critical-thinking-skills" target="_blank">offloading that cognitive effort yields poorer outcomes and results on tasks</a> (and see also <a href="https://arxiv.org/abs/2604.04721" target="_blank">here</a>) unless you do something to the effects from that cognitive offloading.</p>
+  <p>Part of the problem here is that <a href="https://thebullshitmachines.com/" target="_blank">the way LLMs generate text has no intrinsic relationship to reality</a> (for more on this, too, <a href="https://olivia.science/ai" target="_blank">see this awesome set of lessons from Olivia Guest!)</a>. Because of this, the use of LLMs for the purposes of doing knowledge work is on its way to being outlawed in a number of settings. While it's up for grabs whether or not academia will outlaw the use of LLMs for doing research/literature reviews, it's already <a href="https://www.damiencharlotin.com/hallucinations/" target="_blank">grounds for sanction in legal settings</a>.</p>
+  <p>It's kind of a mark of shame, then, when folks use generative AI for knowledge work uncritically. And, unfortunately, a member of the VH HOA board did just that with regards to some of our neighborhood policies. How can we tell? Well, with some pretty simple data science, actually.</p>
+</div>
+
+<div style="position:relative;">
+  <div class="grey-block">
+    <h3 class="grey-H3">Convergence Information</h3>
+    <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+    <p>We used the convergence-information metric (CI) to calculate how similar the ideas expressed in one text (it's derived from <a href="https://link.springer.com/article/10.3758/s13428-023-02267-2" target="_blank">the convergence-entropy metric</a>), written by either a separate board member or chatGPT, were to one another. CI converts every word in a text into a word vector using a differnt LLM than chatGPT (we specifically used one called RoBERTa). The word vectors that are generated are actually really good at representing the semantic meaning of a word (Mikolov et al. 2013; Devlin et al. 2018; Utsumi 2020). Once we have those word vectors we calculate how likely two words mean the same thing by seeing how similar those two word vectors are to one another using something called their cosine error. If cosine error is close to zero then two word vectors are really similar to one another, and the words they represent probably mean the same thing.</p>
+    <p>We needed a probability though, not just how similar the two word vectors were to one another. To get that, we followed the steps outline in Rosen & Dale 2023. The equation below uses a normal distribution with a mean $\mu=0$ to test the "null hypothesis" that two word vectors, based on their cosine error, are exactly the same. $E_{xi}$ is the word vector for the $i^{th}$ word in a text $x$, $E_{yj}$ is the word vector for the $j^{th}$ word vector in the text $y$. And we take the value for the lowest difference between the word vector $E_{xi}$ and <em>any</em> word vector in the text $y$ to calculate our probability.</p>
+    <p>$P(E_{xi}|E_y) = P_{N_{[0, \infty]}} \left( \min_j \left( CoE(E_{xi}, E_{yj})\right) \bigg| \mu=0, \sigma \right)$</p>
+    <p>Once you have that value, you can calculate how much random information the text $y$ adds to the text $x$ in order to get from the ideas expressed in the text $x$ to the ideas in the text $y$. via the equation below.</p>
+    <p>$I(x;y) = - \sum_i \log P(E_{xi}|E_y)$</p>
+    <p>What's nice about this measurement is that it allows you to test how easy it is to recover the ideas in the text $x$ using pieces from the text $y$. When it's really easy to recover ideas about $x$ from $y$, you don't need much random information, and so CI is low. The opposite is true otherwise.</p>
+    <p>And why CI is useful for the current task, then, is because if you can generate a bunch of LLM responses, you can test whether or not the content of something like email likely was generated by an LLM as well. If that is the case, then the ideas in the email should be really easy to recover from the LLM text. If it's easy to recover that email from the LLM text, then it's highly likely it was written by an LLM.</p>
+  </div>
+</div>
+
+<div class="white-block">
+  <h3 class="white-H3">Collecting the data</h3>
+    <p>To collect our LLM data, we generated responses from chatGPT-5 using 5 different prompts/ways to ask about city fire lane codes. The thought being that if chatGPT-5 is acting like different people, then the kinds of things it should focus on its responses, and thus the kinds of things it should say, should be different from one another in the same way that when different people answer a question they answer it in different ways depending on what their experiences are. Those different experiences will dictate what people focus on when they respond to a question.</p> 
+    <p>chatGPT-5 never saw what it wrote in response to a prior prompt/question/round, so its response each time was a little different.</p>
+    <p>We made a document containing pairwise comparisons for the board member we think used an LLM to generate their email as well as a random board member responding in the same email thread, as well as for both board members to each LLM generated response, and each LLM generated response to every other LLM generated response. This document was what we used to calculate CI values.</p>
+</div>
+
+<div style="position:relative;">
+  <div class="grey-block">
+    <h3 class="grey-H3">Testing for differences</h3>
+    <!-- <p>Rosen, Z. P. (IN PROGRESS). You can't generate your cake and eat it too: Information theoretic proofs of depreciating financial returns for LLM-based classifiers.</p> -->
+    <p>Honestly, we kept it pretty simple in this case. We calculated the average amount of extra information calcuated when trying to reconstruct one of the random human or LLM responses from any of the LLM responses specifically (i.e. comparin trying to recover the ideas in a human text from all of the LLM texts, and for all of the LLM texts from the other LLM texts). And then we just plotted those averages for each individual comparison.</p>
+    <p>A more principled way of doing this would be to do something like calculated the average and standard deviation for recovering an LLM text from any other LLM text, and then using that to calculate the probability of getting the same amount of random information when recovering one of the human texts from an LLM text. The resulting probability would be high when a human text is really similar to an LLM text. But. As you can see in the visualization below, not strictly necessary. You can see how that would turn out already.</p>
+  </div>
+</div>
+
+<div class="results-block">
+  <h3 class="results-H3">FINDINGS</h3>
+  <h3 class="whitish-H3">How much more information does our suspected bot response require when compared to other LLM texts? And what about for our verified human text? More importantly, compared to our verified human text, how close to the center of the LLM-compared-other-LLM texts is our suspected bot text? The more within the range of LLM-compared-other-LLM texts, the more likely it is that our suspected bot is indeed a bot.</h3>
+  <p>The interactive graph below shows just how much more or less information both LLMs and humans bring into the texts they produce as outputs when compared to other LLM generated texts. You can see the results, isolate them, or even zoom in on parts of the graph.</p>
+  <div>
+    <embed src="plot.html" style="width: 100%; height: 800px; display: block" frameBorder="0"/>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h3 class="whitish-H3">How close are most of us to sounding robotic?</h3>
+  <p>The point is to be on the right-hand side of the line here . . . so how many of us ended up on that side??</p>
+  <div>
+    <embed src="https://zaqari.github.io/citizen_science/llms_asu_test/are-we-robots-results.html" style="width: 100%; height: 800px; left:4.5%" frameBorder="0"/>
+  </div>
+  <p>All the values reported here are based on the residual (how off the predicted value of convergence-entropy is compared to the actual value) if we treated every student as an LLM. In other words . . .</p>
+  <p>$H(x_{llm};y_{student}) \sim P_{N} \left( \theta_{xy}, \epsilon_p \right)$</p>
+  <p>Where</p>
+  <p>$\theta_{xy} = \beta_{c} \cdot 1 + \beta_{n_x} n_x + \beta_{n_y} n_y $</p>
+  <p>And the residual is calculated via</p>
+  <p>$H(x_{llm};y_{student}) - \hat{H}(x_{llm};y_{student})$</p>
+  <p>Here $\hat{H}$ just means we're using the predicted entropy based off of the equations we listed above.</p>
+  <br>
+  <br>
+</div>
+
+<div style="position: relative;">
+  <div style>
+
+  </div>
+
+</div>
+
+<div style="position:relative;">
+  <div style="color:white;background-color:#03396f;text-align:left;padding:50px 80px;">
+    <h3 style="text-align:center;color:lightslategrey;">Rererences</h3>
+    <p>Bender, E. M., Gebru, T., McMillan-Major, A., & Shmitchell, S. (2021). On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? 🦜. Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency, 610–623. https://doi.org/10.1145/3442188.3445922</p>
+    <p>Bender, E. M., & Koller, A. (2020). Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data. In D. Jurafsky, J. Chai, N. Schluter, & J. Tetreault (Eds.), Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (pp. 5185–5198). Association for Computational Linguistics. https://doi.org/10.18653/v1/2020.acl-main.463</p>
+    <p>Binz, M., Alaniz, S., Roskies, A., Aczel, B., Bergstrom, C. T., Allen, C., … Schulz, E. (2025). How should the advancement of large language models affect the practice of science? Proceedings of the National Academy of Sciences, 122(5), e2401227121. doi: 10.1073/pnas.2401227121</p>
+    <p>Guest, O., Suarez, M., Müller, B., van Meerkerk, E., Oude Groote Beverborg, A., de Haan, R., … van Rooij, I. (2025, September 5). Against the Uncritical Adoption of “AI” Technologies in Academia. Zenodo. doi: 10.5281/zenodo.17065099</p>
+    <p>Liu, Y., Ott, M., Goyal, N., Du, J., Joshi, M., Chen, D., Levy, O., Lewis, M., Zettlemoyer, L., & Stoyanov, V. (2019). RoBERTa: A Robustly Optimized BERT Pretraining Approach (arXiv:1907.11692). arXiv. https://doi.org/10.48550/arXiv.1907.11692</p>
+    <p>Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013). Efficient Estimation of Word Representations in Vector Space. Arxiv.</p>
+    <p>Devlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv:1810.04805 [Cs]. http://arxiv.org/abs/1810.04805</p>
+    <p>Rosen, Z. P., & Dale, R. (2023). BERTs of a feather: Studying inter- and intra-group communication via information theory and language models. Behavior Research Methods. https://doi.org/10.3758/s13428-023-02267-2</p>
+    <p>Rosen, Z. P., & Dale, R. (2024). LLMs Don’t “Do Things with Words” but Their Lack of Illocution Can Inform the Study of Human Discourse. Proceedings of the Annual Meeting of the Cognitive Science Society, 46(0). https://escholarship.org/uc/item/25k7z0mz</p>
+    <p>Titus, L. M. (2024). Does ChatGPT have semantic understanding? A problem with the statistics-of-occurrence strategy. Cognitive Systems Research, 83, 101174. https://doi.org/10.1016/j.cogsys.2023.101174</p>
+    <p>Utsumi, A. (2020). Exploring What Is Encoded in Distributional Word Vectors: A Neurobiologically Motivated Analysis. Cognitive Science, 44(6), e12844. https://doi.org/10.1111/cogs.12844</p>
+    <p>Yan, L., Sha, L., Zhao, L., Li, Y., Martinez-Maldonado, R., Chen, G., Li, X., Jin, Y., & Gašević, D. (2024). Practical and ethical challenges of large language models in education: A systematic scoping review. British Journal of Educational Technology, 55(1), 90–112. https://doi.org/10.1111/bjet.13370</p>
+  </div>
+</div>
+
+
+</body>
+
+
+
+</html>
